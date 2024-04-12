@@ -27,41 +27,25 @@
         <div class="sidebar">
             <a class="active" href="#Ratings">Ratings</a>
         </div>
-        <div class="container">
-            <div class="filters">
-                <label for="species">Species:</label>
-                <select id="species">
-                    <option value="">All</option>
-                    <!-- Populate species options dynamically using JavaScript -->
-                </select>
-                <label for="habitat">Habitat:</label>
-                <select id="habitat">
-                    <option value="">All</option>
-                    <!-- Populate habitat options dynamically using JavaScript -->
-                </select>
-                <label for="diet">Diet:</label>
-                <select id="diet">
-                    <option value="">All</option>
-                    <!-- Populate diet options dynamically using JavaScript -->
-                </select>
-                <button onclick="searchAnimals()">Search</button>
+        <div class="container2">
+            <div class="animalDiv">
+                <input type="text" placeholder="Enter Animal Name" required  id="animalName">
+                
+                <button onclick="searchAnimals()" id="searchBtn">Search</button>
             </div>
             <div id="animalList"></div>
         </div>
-    
         <div class="popup" id="popup"></div>
-    
-
     </div>
-  <footer>
-    <ul>  
-    <li><a href="WhatsApp.html"><img src="./images/whatsapp.png"></a></li>
-    <li><a href="Facebook.html"><img src="./images/facebook.png"></a></li>
-    <li><a href="Instagram.html"><img src="./images/instagram.jpg"></a></li>
-    <li><a href="Twitter.html"><img src="./images/twitter.png"></a></li>
-    </ul>
 
-</footer>
+  <!-- <div>
+    <ul class="contact-us">  
+        <li class="icon"><a href="WhatsApp.html"><img src="./images/whatsapp.png"></a></li>
+        <li class="icon"><a href="Facebook.html"><img src="./images/facebook.png"></a></li>
+        <li class="icon"><a href="Instagram.html"><img src="./images/instagram.jpg"></a></li>
+        <li class="icon"><a href="Twitter.html"><img src="./images/twitter.png"></a></li>
+    </ul>
+  </div> -->
 
 
 
