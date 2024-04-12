@@ -3,7 +3,7 @@ body{
     padding: 0;
     margin: 0;
     font: 15px/1.5 Arial, Helvetica, sans-serif;
-    background-color: linear-gradient(135deg,grey, green);
+    background: linear-gradient(100deg,grey, green);
     background-size: cover;
 }
 
@@ -123,4 +123,19 @@ header h1{
 }
 #animalName:hover{
 background-color:wheat;
+}
+.sidebar{
+    width: 200px;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+.stars{
+    color: gold;
+    font-size: 24px;
+}
+p{
+    color:black;
+}
+.star{
+    cursor: pointer;
 }
