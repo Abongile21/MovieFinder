@@ -4,7 +4,6 @@ body{
     margin: 0;
     font: 15px/1.5 Arial, Helvetica, sans-serif;
     background-color: linear-gradient(135deg,grey, green);
-    background-repeat: no-repeat;
     background-size: cover;
 }
 
