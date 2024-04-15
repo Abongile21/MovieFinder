@@ -6,7 +6,6 @@ body{
     background: linear-gradient(100deg,grey, green);
     background-size: cover;
 }
-
 .container{
     width: 80%;
     overflow: hidden;
@@ -66,7 +65,6 @@ header h1{
     padding: 0;
     width: 200px;
     background-color: #f1f1f1;
-    position: fixed;
     height: 100%;
     overflow: auto;
 }
@@ -101,8 +99,47 @@ header h1{
     color: #f1f1f1;  
     height: 45px;
     text-align: center;
-
-
+}
+.dropbtn{
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border:none;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    z-index: 1;
+}
+.dropdown-content a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover{
+    background-color: #ddd;
+}
+.dropdown:hover .dropdown-content{
+    display: block;
+}
+.dropdown-submenu-content{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: #f9f9f9;
+    min-width: 160px;
+}
+.dropdown-submenu:hover .dropdown-submenu-content{
+    display: block;
 }
 #searchBtn:hover{
     background-color: green;
@@ -138,4 +175,7 @@ p{
 }
 .star{
     cursor: pointer;
+}
+.moveitem{
+    background: white;
 }
