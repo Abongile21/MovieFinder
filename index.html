@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <title>Petfinder</title>
+    <title>Moviefinder</title>
 </head>
 <body>
     <header>
         <div class="container">
           <div id="branding">
-            <h1><span class="highlight">Pet</span>finder</h1>
+            <h1><span class="highlight">Movie</span>finder</h1>
           </div>
            <nav>
                 <ul>
@@ -35,29 +35,24 @@
                 <span class="star">&#9733;</span>
                 <span class="star">&#9733;</span>
                 <span class="star">&#9734;</span>
+
+
             </div>
         </div>
         <div class="container2">
-            <div class="animalDiv">
-                <input type="text" placeholder="Enter Animal Name" required  id="animalName">
+            <div class="movieDiv">
+                <input type="text" placeholder="Enter movie Name" required  id="movieName">
                 
-                <button onclick="searchAnimals()" id="searchBtn">Search</button>
+                <button onclick="searchMovie()" id="searchBtn">Search</button>
             </div>
-            <div id="animalList"></div>
+            <div id="searchResultContainer"></div>
         </div>
         <div class="popup" id="popup"></div>
     </div>
 
-  <!-- <div>
-    <ul class="contact-us">  
-        <li class="icon"><a href="WhatsApp.html"><img src="./images/whatsapp.png"></a></li>
-        <li class="icon"><a href="Facebook.html"><img src="./images/facebook.png"></a></li>
-        <li class="icon"><a href="Instagram.html"><img src="./images/instagram.jpg"></a></li>
-        <li class="icon"><a href="Twitter.html"><img src="./images/twitter.png"></a></li>
-    </ul>
-  </div> -->
-
-
+<script src="./script.js"></script>
 
 </body>
+
+
 </html>

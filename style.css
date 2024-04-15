@@ -108,7 +108,7 @@ header h1{
     background-color: green;
     color: white
 }
-#animalName{
+#movieName{
     border-radius: 20px;
     width: 350px;
     height: 40px;
@@ -121,7 +121,7 @@ header h1{
     left: 45%;
     bottom: 50%;
 }
-#animalName:hover{
+#movielName:hover{
 background-color:wheat;
 }
 .sidebar{
