@@ -7,17 +7,23 @@ async function searchMovie() {
         const response = await fetch(`https://dummyapi.online/api/movies?name=${movieName}`);
         const data = await response.json();
 
-        const matchingMovies = data.filter(movie => movie.movie.toLowerCase() === movieName.toLowerCase());
+        let foundMovie = null;
+        for (const movie of data) {
+            if (movie.movie === movieName) {
+                foundMovie = movie;
+                break;
+            }
+        }
 
-        if (matchingMovies.length > 0) {
-            const movieHTML = matchingMovies.map(movie => {
-                return `<div class="movieItem">
-                            <h3>${movie.movie}</h3>
-                            <img src="${movie.image}" alt="${movie.movie}">
-                            <p>Rating: ${movie.rating}</p>
-                            <button id="watchBtn"><a href="${movie.imdb_url}" target="_blank">Watch</a></button>
-                        </div>`;
-            }).join('');
+        if (foundMovie) {
+            const movieHTML = `
+                <div class="movieItem">
+                    <h3>${foundMovie.movie}</h3>
+                    <img src="${foundMovie.image}" alt="${foundMovie.movie}">
+                    <p>Rating: ${foundMovie.rating}</p>
+                    <button id="watchBtn"><a href="${foundMovie.imdb_url}" target="_blank">Watch</a></button>
+                </div>
+            `;
 
             searchResultContainer.innerHTML = movieHTML;
         } else {
