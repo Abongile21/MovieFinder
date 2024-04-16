@@ -156,3 +156,26 @@ p{
 .moveitem{
     background: white;
 }
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f9f9f9; 
+    padding: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+  
+.box {
+    text-align: center;
+}
+  
+.star {
+    font-size: 20px;
+    color: #ffc107; /* Set desired color for the stars */
+}
