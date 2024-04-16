@@ -60,30 +60,7 @@ header h1{
 } 
 
 /*Sidebar*/
-.sidebar{
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: #f1f1f1;
-    height: 100%;
-    overflow: auto;
-}
-.sidebar a{
-    display: block;
-    color: black;
-    padding: 16px;
-    text-decoration: none;
-    text-align: center;
-}
-.sidebar a.active{
-    background-color: green;
-    color:white;
-    text-shadow: 2px 2px 2px black;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-.sidebar a:hover{
-    color: pink;
-}
+
 .filters{
     right: 35%;
     position: absolute;
