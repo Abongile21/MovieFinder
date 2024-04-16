@@ -130,12 +130,12 @@ header h1{
     border: solid black 2px;
     color: green;
 }
-.container2{
+.movieSearch{
     position: absolute;
     left: 45%;
     bottom: 50%;
 }
-#movielNameInput:hover{
+#movieNameInput:hover{
 background-color:wheat;
 }
 .sidebar{
