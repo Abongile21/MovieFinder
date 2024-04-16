@@ -1,7 +1,10 @@
+const home = document.getElementById('_home')
+const about = document.getElementById('_about')
+
 async function searchMovie() {
     const movieNameInput = document.getElementById('movieNameInput');
     const movieName = movieNameInput.value.trim();
-    const searchResultContainer = document.getElementById('searchResultContainer');
+    const searchResultContainer = document.getElementById('searchResultContainer')
 
     try {
         const response = await fetch(`https://dummyapi.online/api/movies?name=${movieName}`);
@@ -39,4 +42,6 @@ async function searchMovie() {
     }
 }
 
-const 
+home.addEventListener('click', () => {
+    
+  });
