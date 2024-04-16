@@ -165,7 +165,7 @@ html, body {
 footer {
     position: fixed;
     bottom: 0;
-    width: 100%;
+    width: fit-content;
     background-color: #f9f9f9; 
     padding: 20px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
