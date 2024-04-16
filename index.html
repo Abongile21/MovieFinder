@@ -25,8 +25,8 @@
     <div class="dropdown">
             <button class="dropbtn">Menu</button>
         <div class="dropdown-content">
-            <a href="#">Wishlist</a>
-            <a href="#">Recommandations</a>
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
             <div class="dropdown-submenu-content">
                 <a href="#">Submenu Link 1</a>
                 <a href="#">Submenu Link 1</a>
@@ -34,22 +34,28 @@
           </div>
         </div>
     </div>    
-    
-    <div class="movieSearch">
-        <input type="text" placeholder="Enter movie Name" required  id="movieNameInput">
+        <div class="container2">
+            <div class="movieDiv">
+                <input type="text" placeholder="Enter movie Name" required  id="movieNameInput">
                 
-        <button onclick="searchMovie()" id="searchBtn">Search</button>
+                <button onclick="searchMovie()" id="searchBtn">Search</button>
+            </div>
+            <div id="searchResultContainer"></div>
+        </div>
+        <div class="popup" id="popup"></div>
     </div>
-    <div id="searchResultContainer"></div>
-    
-    
-
-    
-    <div class="footer">
-        <p>
-            Our app is rated 4 stars which means it is very dependable and has been able to help many people across the globe to find their missing loved ones
-        </p>
-    </div>
+<footer>
+    <div class="box">
+    <p>
+        Our app is rated 4 stars which means it is very dependable and has been able to help many people across the globe to find their missing loved ones
+    </p>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9734;</span>
+    </div>    
+</footer>
 <script src="./script.js"></script>
 
 </body>
