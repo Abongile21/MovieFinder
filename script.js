@@ -21,6 +21,10 @@ async function searchMovie() {
                     <h3>${foundMovie.movie}</h3>
                     <img src="${foundMovie.image}" alt="${foundMovie.movie}">
                     <p>Rating: ${foundMovie.rating}</p>
+                    <div class="buttons">
+                        <button id="watchBtn"><a href="${foundMovie.imdb_url}" target="_blank">About</a></button>
+                        <button id="watchBtn"><a href="${foundMovie.imdb_url}" target="_blank"></a></button>
+                    </div>
                     <button id="watchBtn"><a href="${foundMovie.imdb_url}" target="_blank">Watch</a></button>
                 </div>
             `;
