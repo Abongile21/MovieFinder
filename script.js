@@ -38,3 +38,5 @@ async function searchMovie() {
         searchResultContainer.innerHTML = '<p>Error fetching data.</p>';
     }
 }
+
+const 
