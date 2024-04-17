@@ -12,6 +12,8 @@
           <div id="branding">
             <h1><span class="highlight">Movie</span>Nites</h1>
           </div>
+          <input type="text" placeholder="Enter movie Name" required  id="movieNameInput" onkeyup="searchMovie()">
+          <button onclick="searchMovie()" id="searchBtn">Search</button>
            <nav>
                 <ul>
                     <li id="_home" class="current"><a href="index.html">Home</a></li>
@@ -23,6 +25,8 @@
         </div>   
     </header>
 
+    <div id="searchResultContainer"></div>
+
     <div class="dropdown">
             <button class="dropbtn">Menu</button>
         <div class="dropdown-content">
@@ -30,15 +34,7 @@
             <a href="#">Recommendation</a>
         </div>
     </div>    
-    <div class="container2">
-            
-        <input type="text" placeholder="Enter movie Name" required  id="movieNameInput" onkeyup="searchMovie()">
-                
-        <button onclick="searchMovie()" id="searchBtn">Search</button>
-            
-    </div>
-    <div id="searchResultContainer"></div>
-    
+   
     <footer>
         <div class="box">
         <p>

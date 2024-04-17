@@ -59,8 +59,6 @@ header h1{
     text-shadow: 2px 2px 2px black;
 } 
 
-/*Sidebar*/
-
 .filters{
     right: 35%;
     position: absolute;
@@ -70,11 +68,11 @@ header h1{
     gap: 0.5rem;
 }
 #searchBtn{
-    background-color: black;
+    background-color: green;
     border-radius: 20px;
     width: 150px;
     color: #f1f1f1;  
-    height: 45px;
+    height: 30px;
     text-align: center;
 }
 .dropbtn{
@@ -119,29 +117,19 @@ header h1{
     display: block;
 }
 #searchBtn:hover{
-    background-color: green;
-    color: white
+    background-color: whitesmoke;
+    color: black;
 }
 #movieNameInput{
     border-radius: 20px;
-    width: 350px;
-    height: 40px;
+    width: 250px;
+    height: 30px;
     text-align: center;
     border: solid black 2px;
     color: green;
 }
-.container2{
-    position: absolute;
-    left: 45%;
-    bottom: 50%;
-}
 #movielNameInput:hover{
 background-color:wheat;
-}
-.sidebar{
-    width: 200px;
-    padding: 20px;
-    background-color: #f0f0f0;
 }
 .stars{
     color: gold;
