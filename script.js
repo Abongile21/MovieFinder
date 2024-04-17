@@ -1,18 +1,15 @@
-const home = document.getElementById('_home')
-const about = document.getElementById('_about')
-
 async function searchMovie() {
     const movieNameInput = document.getElementById('movieNameInput');
     const movieName = movieNameInput.value.trim();
     const searchResultContainer = document.getElementById('searchResultContainer')
 
     try {
-        const response = await fetch(`https://dummyapi.online/api/movies?name=${movieName}`);
+        const response = await fetch('movies.json'); // Fetch local JSON file
         const data = await response.json();
 
         let foundMovie = null;
         for (const movie of data) {
-            if (movie.movie === movieName) {
+            if (movie.movie.toLowerCase() === movieName.toLowerCase()) { // Case-insensitive comparison
                 foundMovie = movie;
                 break;
             }
