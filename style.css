@@ -167,3 +167,11 @@ footer {
     font-size: 20px;
     color: #ffc107; /* Set desired color for the stars */
 }
+/*Movie card*/
+
+.movieItem{
+    padding: 5px;
+    margin: 7px;
+    background: white;
+    border-radius: 15px;
+}
