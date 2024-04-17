@@ -38,7 +38,3 @@ async function searchMovie() {
         searchResultContainer.innerHTML = '<p>Error fetching data.</p>';
     }
 }
-
-home.addEventListener('click', () => {
-    
-  });

@@ -1,25 +1,19 @@
-// Function to fetch data from API and store as JSON file
+const fetch = require('node-fetch');
+const fs = require('fs');
+
 async function fetchAndStoreData() {
     try {
-      const response = await fetch('https://dummyapi.online/api/movies');
-      const data = await response.json();
-  
-      const jsonData = JSON.stringify(data);
-      const blob = new Blob([jsonData], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-  
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'movies.json';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+        const response = await fetch('https://dummyapi.online/api/movies');
+        const data = await response.json();
+
+        const jsonData = JSON.stringify(data);
+        fs.writeFileSync('movies.json', jsonData);
+
+        console.log('Data fetched and stored as movies.json');
     } catch (error) {
-      console.error('Error fetching data:', error);
+        console.error('Error fetching data:', error);
     }
-  }
-  
-  // Call fetchAndStoreData to fetch from API and store as JSON
-  fetchAndStoreData();
-  
+}
+
+// Call fetchAndStoreData to fetch from API and store as JSON
+fetchAndStoreData();
