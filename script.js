@@ -9,7 +9,7 @@ async function searchMovie() {
 
         let foundMovie = null;
         for (const movie of data) {
-            if (movie.movie.toLowerCase() === movieName.toLowerCase()) { // Case-insensitive comparison
+            if (movie.movie.toLowerCase().includes(movieName.toLowerCase())) { // Case-insensitive comparison
                 foundMovie = movie;
                 break;
             }
