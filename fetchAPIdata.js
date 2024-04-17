@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+const fetch = require('node');
 const fs = require('fs');
 
 async function fetchAndStoreData() {
