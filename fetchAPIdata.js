@@ -1,5 +1,5 @@
-const fetch = require('node');
-const fs = require('fs');
+import fetch from 'node-fetch';
+import { writeFile } from 'fs/promises';
 
 async function fetchAndStoreData() {
     try {
@@ -7,7 +7,7 @@ async function fetchAndStoreData() {
         const data = await response.json();
 
         const jsonData = JSON.stringify(data);
-        fs.writeFileSync('movies.json', jsonData);
+        await writeFile('movies.json', jsonData);
 
         console.log('Data fetched and stored as movies.json');
     } catch (error) {
