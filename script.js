@@ -22,10 +22,10 @@ async function searchMovie() {
                     <img src="${foundMovie.image}" alt="${foundMovie.movie}">
                     <p>Rating: ${foundMovie.rating}</p>
                     <div class="buttons">
-                        <button id="watchBtn"><a href="${foundMovie.imdb_url}" target="_blank">About</a></button>
+                        <button id="watchBtn"><a href="${foundMovie.imdb_url}" target="_blank">Add to favourites</a></button>
                         <button id="watchBtn"><a href="${foundMovie.imdb_url}" target="_blank"></a></button>
                     </div>
-                    <button id="watchBtn"><a href="${foundMovie.imdb_url}" target="_blank">Watch</a></button>
+                    <button id="watchBtn"><a href="${foundMovie.imdb_url}" target="_blank">More</a></button>
                 </div>
             `;
 
@@ -37,4 +37,8 @@ async function searchMovie() {
         console.error('Error fetching data:', error);
         searchResultContainer.innerHTML = '<p>Error fetching data.</p>';
     }
+}
+
+function addToWishlist() {
+    const wishlist = []
 }
