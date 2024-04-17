@@ -1,3 +1,5 @@
+const wishlist = []
+
 async function searchMovie() {
     const movieNameInput = document.getElementById('movieNameInput');
     const movieName = movieNameInput.value.trim();
@@ -22,10 +24,10 @@ async function searchMovie() {
                     <img src="${foundMovie.image}" alt="${foundMovie.movie}">
                     <p>Rating: ${foundMovie.rating}</p>
                     <div class="buttons">
-                        <button id="watchBtn"><a href="${foundMovie.imdb_url}" target="_blank">Add to favourites</a></button>
+                        <button onclick="addToFavourites('${foundMovie.movie}', '${foundMovie.image}')" id="_wishList">Add to wishlist</button>
                         <button id="watchBtn"><a href="${foundMovie.imdb_url}" target="_blank"></a></button>
                     </div>
-                    <button id="watchBtn"><a href="${foundMovie.imdb_url}" target="_blank">More</a></button>
+                    <button id="_more"><a href="${foundMovie.imdb_url}" target="_blank">More</a></button>
                 </div>
             `;
 
@@ -39,6 +41,14 @@ async function searchMovie() {
     }
 }
 
-function addToWishlist() {
-    const wishlist = []
+function addToFavourites(movie, image){
+
+    const movieDetails = {
+        movie:movie,
+        "image":image
+    }
+
+    wishlist.push(movieDetails)
+    alert("Added " + movieDetails.movie + " to wishlist")
+
 }
