@@ -21,9 +21,9 @@ async function searchMovie() {
                     <p>Rating: ${foundMovie.rating}</p>
                     <div class="buttons">
                         <button onclick="addToFavourites('${foundMovie.movie}', '${foundMovie.image}')" id="_wishList">Add to wishlist</button>
-                        <button id="watchBtn"><a href="${foundMovie.imdb_url}" target="_blank"></a></button>
+                        <button id="_more"><a href="${foundMovie.imdb_url}" target="_blank">More</a></button>
                     </div>
-                    <button id="_more"><a href="${foundMovie.imdb_url}" target="_blank">More</a></button>
+                    
                 </div>
             `).join('');
 
