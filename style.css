@@ -127,6 +127,7 @@ header h1{
     text-align: center;
     border: solid black 2px;
     color: green;
+    margin-left: 50px;
 }
 #movielNameInput:hover{
 background-color:wheat;
