@@ -172,10 +172,16 @@ footer {
 .movieItem{
     padding: 5px;
     margin: 7px;
-    background: white;
-    border-radius: 15px;
+    background: rgb(245, 181, 181);
+    border-radius: 2px;
 }
 .buttons {
     display: flex;
     gap: 0.5rem;
+}
+#searchResultContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-gap: 1px;
+    padding: 10px;
 }
