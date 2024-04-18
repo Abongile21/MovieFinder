@@ -172,7 +172,7 @@ footer {
 .movieItem{
     padding: 5px;
     margin: 7px;
-    background: rgb(245, 181, 181);
+    background: white;
     border-radius: 2px;
 }
 .buttons {
