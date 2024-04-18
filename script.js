@@ -9,16 +9,12 @@ async function searchMovie() {
         const response = await fetch('movies.json'); // Fetch local JSON file
         const data = await response.json();
 
-        let foundMovie = null;
-        for (const movie of data) {
-            if (movie.movie.toLowerCase().includes(movieName.toLowerCase())) { // Case-insensitive comparison
-                foundMovie = movie;
-                break;
-            }
-        }
+        const filteredMovies = data.filter(movie =>
+            movie.movie.toLowerCase().includes(movieName.toLowerCase())
+        );
 
-        if (foundMovie) {
-            const movieHTML = `
+        if (filteredMovies.length > 0) {
+            const movieHTML = filteredMovies.map(foundMovie => `
                 <div class="movieItem">
                     <h3>${foundMovie.movie}</h3>
                     <img src="${foundMovie.image}" alt="${foundMovie.movie}">
@@ -29,7 +25,7 @@ async function searchMovie() {
                     </div>
                     <button id="_more"><a href="${foundMovie.imdb_url}" target="_blank">More</a></button>
                 </div>
-            `;
+            `).join('');
 
             searchResultContainer.innerHTML = movieHTML;
         } else {
