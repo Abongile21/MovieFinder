@@ -20,13 +20,11 @@ async function searchMovie() {
                     <img src="${foundMovie.image}" alt="${foundMovie.movie}">
                     <p>Rating: ${foundMovie.rating}</p>
                     <div class="buttons">
-                        <button onclick="addToFavourites('${foundMovie.movie}', '${foundMovie.image}')" id="_wishList">Add to wishlist</button>
+                        <button onclick="addToFavourites('${foundMovie.movie}', '${foundMovie.image}')">Add to wishlist</button>
                         <button id="_more"><a href="${foundMovie.imdb_url}" target="_blank">More</a></button>
                     </div>
-                    
                 </div>
             `).join('');
-
             searchResultContainer.innerHTML = movieHTML;
         } else {
             searchResultContainer.innerHTML = '<p>No movies found.</p>';
@@ -38,13 +36,10 @@ async function searchMovie() {
 }
 
 function addToFavourites(movie, image){
-
     const movieDetails = {
         movie:movie,
         "image":image
     }
-
     wishlist.push(movieDetails)
     alert("Added " + movieDetails.movie + " to wishlist")
-
 }
