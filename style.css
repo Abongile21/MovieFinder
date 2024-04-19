@@ -1,3 +1,4 @@
+
 body{
     display: block;
     padding: 0;
@@ -196,7 +197,9 @@ html, body {
 .buttons {
     display: flex;
     gap: 0.5rem;
-    border-radius: 3px;
+}
+.movieItem button{
+    border-radius: 5px;
 }
 #searchResultContainer{
     display: grid;
