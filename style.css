@@ -182,6 +182,7 @@ html, body {
     text-align: center;
 }
 .movieItem .buttons, p,img{
+    text-align: center;
     margin-left: 25%;
 }
 .buttons {
