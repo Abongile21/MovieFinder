@@ -188,6 +188,7 @@ html, body {
 .buttons {
     display: flex;
     gap: 0.5rem;
+    border-radius: 3px;
 }
 #searchResultContainer{
     display: grid;
