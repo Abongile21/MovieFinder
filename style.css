@@ -152,18 +152,18 @@ html, body {
     padding: 0;
   }
   
-footer {
+/* footer {
     position: fixed;
     bottom: 0;
     width: fit-content;
     background-color: #f9f9f9; 
     padding: 20px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
+} */
   
-.box {
+/* .box {
     text-align: center;
-}
+} */
   
 .star {
     font-size: 20px;
