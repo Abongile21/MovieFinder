@@ -76,6 +76,7 @@ header h1{
     color: #f1f1f1;  
     height: 30px;
     text-align: center;
+    font-weight: bold;
 }
 .dropbtn{
     background-color: #333;
