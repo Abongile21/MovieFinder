@@ -119,8 +119,9 @@ header h1{
     display: block;
 }
 #searchBtn:hover{
-    background-color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.594);
     color: black;
+    cursor: pointer;
 }
 #movieNameInput{
     border-radius: 20px;
@@ -131,7 +132,7 @@ header h1{
     color: green;
     margin-left: 50px;
 }
-#movielNameInput:hover{
+#movieNameInput:hover{
 background-color:wheat;
 }
 .stars{
@@ -200,6 +201,11 @@ html, body {
 }
 .movieItem button{
     border-radius: 5px;
+    cursor: pointer;
+}
+.movieItem button:hover{
+    background-color:rgb(148, 148, 121);
+    font-weight: bold;
 }
 #searchResultContainer{
     display: grid;
