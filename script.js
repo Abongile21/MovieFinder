@@ -18,7 +18,7 @@ async function searchMovie() {
                 <div class="movieItem">
                     <img src="${foundMovie.image}" alt="${foundMovie.movie}">
                     <h4>${foundMovie.movie}</h4>
-                    <p>Rating: ${foundMovie.rating}</p>
+                    <p>⭐${foundMovie.rating}</p>
                     <div class="buttons">
                         <button onclick="addToWishList('${foundMovie.movie}', '${foundMovie.image}')">Add to wishlist</button>
                         <button id="_more"><a href="${foundMovie.imdb_url}" target="_blank">More</a></button>
