@@ -20,7 +20,7 @@ async function searchMovie() {
                     <img src="${foundMovie.image}" alt="${foundMovie.movie}">
                     <p>Rating: ${foundMovie.rating}</p>
                     <div class="buttons">
-                        <button onclick="addToFavourites('${foundMovie.movie}', '${foundMovie.image}')">Add to wishlist</button>
+                        <button onclick="addToWishList('${foundMovie.movie}', '${foundMovie.image}')">Add to wishlist</button>
                         <button id="_more"><a href="${foundMovie.imdb_url}" target="_blank">More</a></button>
                     </div>
                 </div>
