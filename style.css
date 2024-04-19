@@ -173,6 +173,11 @@ html, body {
 
 .movieItem{
     padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+
     margin: 7px;
     background: rgb(219, 216, 216);
     border-radius: 10px;
@@ -183,7 +188,10 @@ html, body {
 }
 .movieItem .buttons, p,img{
     text-align: center;
-    margin-left: 25%;
+}
+.movieItem img{
+    height: auto;
+    width: 180px;
 }
 .buttons {
     display: flex;
@@ -192,7 +200,7 @@ html, body {
 }
 #searchResultContainer{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 1px;
     padding: 10px;
 }

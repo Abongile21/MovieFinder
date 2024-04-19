@@ -16,8 +16,8 @@ async function searchMovie() {
         if (filteredMovies.length > 0) {
             const movieHTML = filteredMovies.map(foundMovie => `
                 <div class="movieItem">
-                    <h3>${foundMovie.movie}</h3>
                     <img src="${foundMovie.image}" alt="${foundMovie.movie}">
+                    <h4>${foundMovie.movie}</h4>
                     <p>Rating: ${foundMovie.rating}</p>
                     <div class="buttons">
                         <button onclick="addToWishList('${foundMovie.movie}', '${foundMovie.image}')">Add to wishlist</button>
