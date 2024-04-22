@@ -1,6 +1,4 @@
-// Array of image filenames in the 'images/' folder
-const images = ['lion_king.jpg', 'avengers_endgame.jpg', 'her.jpg','fences.jpg'];
-
+const images = ['lion_king.jpg', 'avengers_endgame.jpg', 'her.jpg', 'fences.jpg'];
 let currentSlide = 0;
 const slideshowContainer = document.getElementById('imageshow');
 
@@ -13,14 +11,14 @@ function showPrevSlide() {
     currentSlide = (currentSlide - 1 + images.length) % images.length;
     displaySlide();
 }
+
 function displaySlide() {
     slideshowContainer.innerHTML = `<img class="slides" src="images/${images[currentSlide]}" alt="Slide">`;
 }
+
 displaySlide();
 setInterval(showNextSlide, 3000);
 
-
-// Function to fetch and display movies based on search criteria
 async function searchMovie() {
     const movieName = movieNameInput.value.trim();
 
@@ -39,8 +37,8 @@ async function searchMovie() {
                     <img src="${foundMovie.image}" alt="${foundMovie.movie}">
                     <p>Rating: ${foundMovie.rating}</p>
                     <div class="buttons">
-                        <button onclick="addToWishlist('${foundMovie.movie}', '${foundMovie.image}', '${foundMovie.rating}', '${foundMovie.imdb_url}')" id="_wishList">Add to wishlist</button>
-                        <button id="_more"><a href="${foundMovie.imdb_url}" target="_blank">More</a></button>
+                        <button onclick="addToWishlist('${foundMovie.movie}', '${foundMovie.image}', '${foundMovie.rating}', '${foundMovie.imdb_url}')">Add to wishlist</button>
+                        <button><a href="${foundMovie.imdb_url}" target="_blank">More</a></button>
                     </div>
                 </div>
             `).join('');
@@ -55,9 +53,11 @@ async function searchMovie() {
     }
 }
 
-// Global variables
+const movieNameInput = document.getElementById('movieNameInput');
+const searchResultContainer = document.getElementById('searchResultContainer');
+const wishlistContainer = document.getElementById('wishlistContainer');
+const recommendationContainer = document.getElementById('recommendationContainer');
 
-// Function to fetch and display recommendations
 async function displayRecommendation(recommendations) {
     if (recommendations.length > 0) {
         const recommendationHTML = recommendations.map(movie => `
@@ -66,8 +66,8 @@ async function displayRecommendation(recommendations) {
                 <img src="${movie.image}" alt="${movie.movie}">
                 <p>Rating: ${movie.rating}</p>
                 <div class="buttons">
-                    <button onclick="addToWishlist('${movie.movie}', '${movie.image}', '${movie.rating}', '${movie.imdb_url}')" id="_wishList">Add to wishlist</button>
-                    <button id="_more"><a href="${movie.imdb_url}" target="_blank">More</a></button>
+                    <button onclick="addToWishlist('${movie.movie}', '${movie.image}', '${movie.rating}', '${movie.imdb_url}')">Add to wishlist</button>
+                    <button><a href="${movie.imdb_url}" target="_blank">More</a></button>
                 </div>
             </div>
         `).join('');
@@ -78,7 +78,6 @@ async function displayRecommendation(recommendations) {
     }
 }
 
-// Function to fetch and display the wishlist
 function displayWishlist(wishlist) {
     if (wishlist.length > 0) {
         const wishlistHTML = wishlist.map(item => `
@@ -87,8 +86,8 @@ function displayWishlist(wishlist) {
                 <img src="${item.image}" alt="${item.name}">
                 <p>Rating: ${item.rating}</p>
                 <div class="buttons">
-                    <button onclick="deleteFromWishlist('${item.name}')" id="_delete">Remove</button>
-                    <button id="_more"><a href="${item.url}" target="_blank">More</a></button>
+                    <button onclick="deleteFromWishlist('${item.name}')">Remove</button>
+                    <button><a href="${item.url}" target="_blank">More</a></button>
                 </div>
             </div>
         `).join('');
@@ -99,48 +98,58 @@ function displayWishlist(wishlist) {
     }
 }
 
-
-
-// Function to add a movie to the wishlist
 function addToWishlist(movieName, movieImage, movieRating, imdbUrl) {
     const movie = { name: movieName, image: movieImage, rating: movieRating, url: imdbUrl };
-    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-
-    const isDuplicate = wishlist.some(item => item.name === movieName);
-
-    if (!isDuplicate) {
-        wishlist.push(movie);
-        localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save wishlist to localStorage
-        alert(`${movieName} added to wishlist!`);
-    } else {
-        alert(`${movieName} is already in your wishlist!`);
-    }
+    fetch('wishlist.json')
+        .then(response => response.json())
+        .then(wishlist => {
+            wishlist.push(movie);
+            fetch('wishlist.json', {
+                method: 'PUT',
+                body: JSON.stringify(wishlist),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(() => alert(`${movieName} added to wishlist!`))
+                .catch(error => console.error('Error updating wishlist:', error));
+        })
+        .catch(error => console.error('Error fetching wishlist:', error));
 }
 
-// Function to delete a movie from the wishlist
 function deleteFromWishlist(movieName) {
-    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    wishlist = wishlist.filter(item => item.name !== movieName);
-    localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Update wishlist in localStorage
-    alert(`${movieName} removed from wishlist.`);
+    fetch('wishlist.json')
+        .then(response => response.json())
+        .then(wishlist => {
+            const updatedWishlist = wishlist.filter(item => item.name !== movieName);
+            fetch('wishlist.json', {
+                method: 'PUT',
+                body: JSON.stringify(updatedWishlist),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(() => alert(`${movieName} removed from wishlist.`))
+                .catch(error => console.error('Error updating wishlist:', error));
+        })
+        .catch(error => console.error('Error fetching wishlist:', error));
 }
 
-// Fetch and display initial recommendation when the page loads
 async function fetchRecommendationData() {
     try {
-        const response = await fetch('recommendation.json'); // Assume this is your recommendation data file
+        const response = await fetch('recommendation.json');
         const data = await response.json();
-        displayRecommendation(data.recommendations); // Display recommendations
+        displayRecommendation(data.recommendations);
     } catch (error) {
         console.error('Error fetching recommendation data:', error);
         recommendationContainer.innerHTML = '<p>Error fetching recommendation data.</p>';
     }
 }
 
-// Fetch and display initial wishlist when the page loads
-displayWishlist(JSON.parse(localStorage.getItem('wishlist')) || []); // Display wishlist from localStorage
 document.addEventListener('DOMContentLoaded', () => {
-   
-   
-    displayWishlist(JSON.parse(localStorage.getItem('wishlist')) || []);
+    fetchRecommendationData();
+    fetch('wishlist.json')
+        .then(response => response.json())
+        .then(wishlist => displayWishlist(wishlist))
+        .catch(error => console.error('Error fetching wishlist:', error));
 });
