@@ -38,7 +38,7 @@ async function searchMovie() {
                     <p>⭐${foundMovie.rating}</p>
                     <div class="buttons">
                         <button onclick="addToWishlist('${foundMovie.movie}', '${foundMovie.image}', '${foundMovie.rating}', '${foundMovie.imdb_url}')"><i class="fa-regular fa-bookmark"></i></button>
-                        <button><a href="${foundMovie.imdb_url}" target="_blank">More</a></button>
+                        <button><a href="${foundMovie.imdb_url}" target="_blank"><i class="fa-solid fa-info"></i></a></button>
                     </div>
                 </div>
             `).join('');
@@ -67,7 +67,7 @@ async function displayRecommendation(recommendations) {
                 <p>Rating: ${movie.rating}</p>
                 <div class="buttons">
                     <button onclick="addToWishlist('${movie.movie}', '${movie.image}', '${movie.rating}', '${movie.imdb_url}')"><i class="fa-regular fa-bookmark"></i></button>
-                    <button><a href="${movie.imdb_url}" target="_blank">More</a></button>
+                    <button><a href="${movie.imdb_url}" target="_blank"><i class="fa-solid fa-info"></i></a></button>
                 </div>
             </div>
         `).join('');
@@ -87,7 +87,7 @@ function displayWishlist(wishlist) {
                 <p>Rating: ${item.rating}</p>
                 <div class="buttons">
                     <button onclick="deleteFromWishlist('${item.name}')"><i class="fa-solid fa-xmark"></i></button>
-                    <button><a href="${item.url}" target="_blank">More</a></button>
+                    <button><a href="${item.url}" target="_blank"><i class="fa-solid fa-info"></i></a></button>
                 </div>
             </div>
         `).join('');
