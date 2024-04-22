@@ -1,6 +1,10 @@
 const images = ['lion_king.jpg', 'avengers_endgame.jpg', 'her.jpg', 'fences.jpg'];
 let currentSlide = 0;
 const slideshowContainer = document.getElementById('imageshow');
+const movieNameInput = document.getElementById('movieNameInput');
+const searchResultContainer = document.getElementById('searchResultContainer');
+const wishlistContainer = document.getElementById('wishlistContainer');
+const recommendationContainer = document.getElementById('recommendationContainer');
 
 function showNextSlide() {
     currentSlide = (currentSlide + 1) % images.length;
@@ -31,13 +35,13 @@ async function searchMovie() {
         );
 
         if (filteredMovies.length > 0) {
-            const movieHTML = filteredMovies.map(foundMovie => `
+            const movieHTML = filteredMovies.map((foundMovie, index) => `
                 <div class="movieItem">
                     <h3>${foundMovie.movie}</h3>
                     <img src="${foundMovie.image}" alt="${foundMovie.movie}">
                     <p>⭐${foundMovie.rating}</p>
                     <div class="buttons">
-                        <button onclick="addToWishlist('${foundMovie.movie}', '${foundMovie.image}', '${foundMovie.rating}', '${foundMovie.imdb_url}')"><i class="fa-regular fa-bookmark"></i></button>
+                        <button id="wishlistButton_${index}" onclick="addToWishlist(${index}, '${foundMovie.movie}', '${foundMovie.image}', '${foundMovie.rating}', '${foundMovie.imdb_url}')"><i class="fa-regular fa-bookmark"></i></button>
                         <button><a href="${foundMovie.imdb_url}" target="_blank"><i class="fa-solid fa-info"></i></a></button>
                     </div>
                 </div>
@@ -53,12 +57,102 @@ async function searchMovie() {
     }
 }
 
-const movieNameInput = document.getElementById('movieNameInput');
-const searchResultContainer = document.getElementById('searchResultContainer');
-const wishlistContainer = document.getElementById('wishlistContainer');
-const recommendationContainer = document.getElementById('recommendationContainer');
+async function addToWishlist(index, movieName, movieImage, movieRating, imdbUrl) {
+    const movie = { name: movieName, image: movieImage, rating: movieRating, url: imdbUrl };
+    const wishlistButton = document.getElementById(`wishlistButton_${index}`);
 
-async function displayRecommendation(recommendations) {
+    fetchJSON('./wishlist.json')
+        .then(wishlist => {
+            if (!wishlist) {
+                wishlist = [];
+            }
+            const isDuplicate = wishlist.some(item => item.name === movieName);
+            if (isDuplicate) {
+                throw new Error(`${movieName} is already in your wishlist!`);
+            }
+
+            wishlist.push(movie);
+            return fetch('wishlist.json', {
+                method: 'PUT',
+                body: JSON.stringify(wishlist),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        })
+        .then(() => {
+            wishlistButton.disabled = true;
+            wishlistButton.innerHTML = '<i class="fa-solid fa-check"></i>';
+            alert(`${movieName} added to wishlist!`);
+        })
+        .catch(error => console.error('Error updating wishlist:', error));
+}
+
+function deleteFromWishlist(movieName) {
+    fetch('wishlist.json')
+        .then(response => response.json())
+        .then(wishlist => {
+            const updatedWishlist = wishlist.filter(item => item.name !== movieName);
+            fetch('wishlist.json', {
+                method: 'PUT',
+                body: JSON.stringify(updatedWishlist),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(() => alert(`${movieName} removed from wishlist.`))
+                .catch(error => console.error('Error updating wishlist:', error));
+        })
+        .catch(error => console.error('Error fetching wishlist:', error));
+}
+
+async function fetchJSON(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching JSON data:', error);
+        return null; // Return null or handle the error appropriately
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchRecommendationData();
+    fetchWishlist();
+});
+
+async function fetchRecommendationData() {
+    try {
+        const data = await fetchJSON('./recommendation.json');
+        if (data && data.recommendations) {
+            displayRecommendation(data.recommendations);
+        } else {
+            throw new Error('Invalid data format or empty response.');
+        }
+    } catch (error) {
+        console.error('Error fetching recommendation data:', error);
+        recommendationContainer.innerHTML = '<p>Error fetching recommendation data.</p>';
+    }
+}
+
+async function fetchWishlist() {
+    try {
+        const wishlist = await fetchJSON('./wishlist.json');
+        if (wishlist) {
+            displayWishlist(wishlist);
+        } else {
+            throw new Error('Invalid data format or empty response.');
+        }
+    } catch (error) {
+        console.error('Error fetching wishlist:', error);
+        wishlistContainer.innerHTML = '<p>Error fetching wishlist data.</p>';
+    }
+}
+
+function displayRecommendation(recommendations) {
     if (recommendations.length > 0) {
         const recommendationHTML = recommendations.map(movie => `
             <div class="recommendedItem">
@@ -66,7 +160,7 @@ async function displayRecommendation(recommendations) {
                 <img src="${movie.image}" alt="${movie.movie}">
                 <p>Rating: ${movie.rating}</p>
                 <div class="buttons">
-                    <button onclick="addToWishlist('${movie.movie}', '${movie.image}', '${movie.rating}', '${movie.imdb_url}')"><i class="fa-regular fa-bookmark"></i></button>
+                    <button onclick="addToWishlist(${index}, '${movie.movie}', '${movie.image}', '${movie.rating}', '${movie.imdb_url}')"><i class="fa-regular fa-bookmark"></i></button>
                     <button><a href="${movie.imdb_url}" target="_blank"><i class="fa-solid fa-info"></i></a></button>
                 </div>
             </div>
@@ -97,59 +191,3 @@ function displayWishlist(wishlist) {
         wishlistContainer.innerHTML = '<p>Your wishlist is empty.</p>';
     }
 }
-
-function addToWishlist(movieName, movieImage, movieRating, imdbUrl) {
-    const movie = { name: movieName, image: movieImage, rating: movieRating, url: imdbUrl };
-    fetch('wishlist.json')
-        .then(response => response.json())
-        .then(wishlist => {
-            wishlist.push(movie);
-            fetch('wishlist.json', {
-                method: 'PUT',
-                body: JSON.stringify(wishlist),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(() => alert(`${movieName} added to wishlist!`))
-                .catch(error => console.error('Error updating wishlist:', error));
-        })
-        .catch(error => console.error('Error fetching wishlist:', error));
-}
-
-function deleteFromWishlist(movieName) {
-    fetch('wishlist.json')
-        .then(response => response.json())
-        .then(wishlist => {
-            const updatedWishlist = wishlist.filter(item => item.name !== movieName);
-            fetch('wishlist.json', {
-                method: 'PUT',
-                body: JSON.stringify(updatedWishlist),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(() => alert(`${movieName} removed from wishlist.`))
-                .catch(error => console.error('Error updating wishlist:', error));
-        })
-        .catch(error => console.error('Error fetching wishlist:', error));
-}
-
-async function fetchRecommendationData() {
-    try {
-        const response = await fetch('recommendation.json');
-        const data = await response.json();
-        displayRecommendation(data.recommendations);
-    } catch (error) {
-        console.error('Error fetching recommendation data:', error);
-        recommendationContainer.innerHTML = '<p>Error fetching recommendation data.</p>';
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    fetchRecommendationData();
-    fetch('wishlist.json')
-        .then(response => response.json())
-        .then(wishlist => displayWishlist(wishlist))
-        .catch(error => console.error('Error fetching wishlist:', error));
-});
