@@ -1,3 +1,4 @@
+
 body{
     display: block;
     padding: 0;
@@ -75,6 +76,7 @@ header h1{
     color: #f1f1f1;  
     height: 30px;
     text-align: center;
+    font-weight: bold;
 }
 .dropbtn{
     background-color: #333;
@@ -118,8 +120,9 @@ header h1{
     display: block;
 }
 #searchBtn:hover{
-    background-color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.594);
     color: black;
+    cursor: pointer;
 }
 #movieNameInput{
     border-radius: 20px;
@@ -130,7 +133,7 @@ header h1{
     color: green;
     margin-left: 50px;
 }
-#movielNameInput:hover{
+#movieNameInput:hover{
 background-color:wheat;
 }
 .stars{
@@ -151,47 +154,48 @@ html, body {
     margin: 0;
     padding: 0;
 }
-  
-/* footer {
-    position: fixed;
-    bottom: 0;
-    width: fit-content;
-    background-color: #f9f9f9; 
-    padding: 20px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-} */
-  
-/* .box {
-    text-align: center;
-} */
-  
-.star {
-    font-size: 20px;
-    color: #ffc107; /* Set desired color for the stars */
-}
 /*Movie card*/
 
 .movieItem{
     padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
     margin: 7px;
     background: rgb(219, 216, 216);
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+.movieItem:hover{
+    scale: 1.07; 
+    
 }
 .movieItem h3{
     text-align: center;
 }
 .movieItem .buttons, p,img{
     text-align: center;
-    margin-left: 25%;
+}
+.movieItem img{
+    height: auto;
+    width: 180px;
 }
 .buttons {
     display: flex;
     gap: 0.5rem;
 }
+.movieItem button{
+    border-radius: 5px;
+    cursor: pointer;
+}
+.movieItem button:hover{
+    background-color:rgb(148, 148, 121);
+    font-weight: bold;
+}
 #searchResultContainer{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 1px;
     padding: 10px;
 }
@@ -199,3 +203,60 @@ html, body {
     text-decoration: none;
     color: black;
 }
+.heropage{
+    position: absolute;
+    color: white;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+.inside-heropage{
+    line-height: 1.2;
+}
+.inside-heropage h1{
+    font-size: 40px;
+}
+.inside-heropage p{
+    font-size: 17px;
+}
+span{
+    color: black;
+    font-weight: bold;
+}
+.line1{
+    height: 2px;
+    color: green;
+    width: 12%;
+    margin-left: 0;
+    margin-top: 0;
+    position: absolute;
+}
+.poster{
+    margin-top: 130px;
+    margin-right: 150px;
+}
+.poster img{
+    height: 320px;
+    float: right;
+    border-radius: 10px;
+}
+.btn1{
+    margin-top: 30px;
+}
+.btn1 a{
+    text-decoration: none;
+    color: whitesmoke;
+    padding: 10px 25px;
+    background: green;
+    border-radius: 20px;
+}
+.btn1 a:hover{
+    background: black;
+    color: green;
+}
+.btn1 i{
+    color: black;
+    padding: 0px 10px;
+}
+.btn1 i:hover{
+    color: white;
+} 
