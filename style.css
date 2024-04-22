@@ -182,6 +182,7 @@ html, body {
     gap: 0.5rem;
 }
 .movieItem button{
+    width: 40px;
     border-radius: 10px;
     cursor: pointer;
     

@@ -35,9 +35,9 @@ async function searchMovie() {
                 <div class="movieItem">
                     <h3>${foundMovie.movie}</h3>
                     <img src="${foundMovie.image}" alt="${foundMovie.movie}">
-                    <p>Rating: ${foundMovie.rating}</p>
+                    <p>⭐${foundMovie.rating}</p>
                     <div class="buttons">
-                        <button onclick="addToWishlist('${foundMovie.movie}', '${foundMovie.image}', '${foundMovie.rating}', '${foundMovie.imdb_url}')">Add to wishlist</button>
+                        <button onclick="addToWishlist('${foundMovie.movie}', '${foundMovie.image}', '${foundMovie.rating}', '${foundMovie.imdb_url}')"><i class="fa-regular fa-bookmark"></i></button>
                         <button><a href="${foundMovie.imdb_url}" target="_blank">More</a></button>
                     </div>
                 </div>
@@ -66,7 +66,7 @@ async function displayRecommendation(recommendations) {
                 <img src="${movie.image}" alt="${movie.movie}">
                 <p>Rating: ${movie.rating}</p>
                 <div class="buttons">
-                    <button onclick="addToWishlist('${movie.movie}', '${movie.image}', '${movie.rating}', '${movie.imdb_url}')">Add to wishlist</button>
+                    <button onclick="addToWishlist('${movie.movie}', '${movie.image}', '${movie.rating}', '${movie.imdb_url}')"><i class="fa-regular fa-bookmark"></i></button>
                     <button><a href="${movie.imdb_url}" target="_blank">More</a></button>
                 </div>
             </div>
@@ -86,7 +86,7 @@ function displayWishlist(wishlist) {
                 <img src="${item.image}" alt="${item.name}">
                 <p>Rating: ${item.rating}</p>
                 <div class="buttons">
-                    <button onclick="deleteFromWishlist('${item.name}')">Remove</button>
+                    <button onclick="deleteFromWishlist('${item.name}')"><i class="fa-solid fa-xmark"></i></button>
                     <button><a href="${item.url}" target="_blank">More</a></button>
                 </div>
             </div>
