@@ -1,5 +1,5 @@
 // Array of image filenames in the 'images/' folder
-const images = ['lion_king.jpg', 'avengers_endgame.jpg', 'her.jpg','fence.jpg'];
+const images = ['lion_king.jpg', 'avengers_endgame.jpg', 'her.jpg','fences.jpg'];
 
 let currentSlide = 0;
 const slideshowContainer = document.getElementById('imageshow');
