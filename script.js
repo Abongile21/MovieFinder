@@ -1,4 +1,24 @@
-const wishlist = []
+// Array of image filenames in the 'images/' folder
+const images = ['lion_king.jpg', 'avengers_endgame.jpg', 'her.jpg','fence.jpg'];
+
+let currentSlide = 0;
+const slideshowContainer = document.getElementById('imageshow');
+
+function showNextSlide() {
+    currentSlide = (currentSlide + 1) % images.length;
+    displaySlide();
+}
+
+function showPrevSlide() {
+    currentSlide = (currentSlide - 1 + images.length) % images.length;
+    displaySlide();
+}
+function displaySlide() {
+    slideshowContainer.innerHTML = `<img class="slides" src="images/${images[currentSlide]}" alt="Slide">`;
+}
+displaySlide();
+setInterval(showNextSlide, 3000);
+
 
 async function searchMovie() {
     const movieNameInput = document.getElementById('movieNameInput');

@@ -260,3 +260,14 @@ span{
 .btn1 i:hover{
     color: white;
 } 
+/*---------------------slideshow----------------------*/
+#imageshow {
+    max-width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    scale: 1.2;
+
+
+}
+
