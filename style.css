@@ -207,10 +207,7 @@ html, body {
 #imageshow {
     max-width: 100%;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    scale: 1.2;
-
+    position: relative;
 
 }
 
