@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // Array of image filenames in the 'images/' folder
 const images = ['lion_king.jpg', 'avengers_endgame.jpg', 'her.jpg','fence.jpg'];
 
@@ -20,13 +19,6 @@ function displaySlide() {
 displaySlide();
 setInterval(showNextSlide, 3000);
 
-=======
-// Global variables
-const movieNameInput = document.getElementById('movieNameInput');
-const searchResultContainer = document.getElementById('searchResultContainer');
-const wishlistContainer = document.getElementById('wishlistContainer');
-const recommendationContainer = document.getElementById('recommendationContainer');
->>>>>>> f3e065e3ca3534e62bf5181fa4f6ff07dfbbc104
 
 // Function to fetch and display movies based on search criteria
 async function searchMovie() {
