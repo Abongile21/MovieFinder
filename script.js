@@ -73,7 +73,7 @@ async function addToWishlist(index, movieName, movieImage, movieRating, imdbUrl)
 
             wishlist.push(movie);
             return fetch('wishlist.json', {
-                method: 'PUT',
+                method: 'POST',
                 body: JSON.stringify(wishlist),
                 headers: {
                     'Content-Type': 'application/json'
@@ -94,7 +94,7 @@ function deleteFromWishlist(movieName) {
         .then(wishlist => {
             const updatedWishlist = wishlist.filter(item => item.name !== movieName);
             fetch('wishlist.json', {
-                method: 'PUT',
+                method: 'POST',
                 body: JSON.stringify(updatedWishlist),
                 headers: {
                     'Content-Type': 'application/json'
@@ -118,11 +118,6 @@ async function fetchJSON(url) {
         return null; // Return null or handle the error appropriately
     }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    fetchRecommendationData();
-    fetchWishlist();
-});
 
 async function fetchRecommendationData() {
     try {
@@ -191,3 +186,8 @@ function displayWishlist(wishlist) {
         wishlistContainer.innerHTML = '<p>Your wishlist is empty.</p>';
     }
 }
+document.addEventListener('DOMContentLoaded', () => {
+    fetchRecommendationData();
+    fetchWishlist();
+});
+
