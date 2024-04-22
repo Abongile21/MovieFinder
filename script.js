@@ -37,8 +37,8 @@ async function searchMovie() {
         if (filteredMovies.length > 0) {
             const movieHTML = filteredMovies.map((foundMovie, index) => `
                 <div class="movieItem">
-                    <h3>${foundMovie.movie}</h3>
                     <img src="${foundMovie.image}" alt="${foundMovie.movie}">
+                    <h3>${foundMovie.movie}</h3>
                     <p>⭐${foundMovie.rating}</p>
                     <div class="buttons">
                         <button id="wishlistButton_${index}" onclick="addToWishlist(${index}, '${foundMovie.movie}', '${foundMovie.image}', '${foundMovie.rating}', '${foundMovie.imdb_url}')"><i class="fa-regular fa-bookmark"></i></button>
@@ -156,9 +156,9 @@ function displayRecommendation(recommendations) {
     if (recommendations.length > 0) {
         const recommendationHTML = recommendations.map(movie => `
             <div class="recommendedItem">
-                <h3>${movie.movie}</h3>
                 <img src="${movie.image}" alt="${movie.movie}">
-                <p>Rating: ${movie.rating}</p>
+                <h3>${movie.movie}</h3>
+                <p>⭐${movie.rating}</p>
                 <div class="buttons">
                     <button onclick="addToWishlist(${index}, '${movie.movie}', '${movie.image}', '${movie.rating}', '${movie.imdb_url}')"><i class="fa-regular fa-bookmark"></i></button>
                     <button><a href="${movie.imdb_url}" target="_blank"><i class="fa-solid fa-info"></i></a></button>
@@ -176,9 +176,9 @@ function displayWishlist(wishlist) {
     if (wishlist.length > 0) {
         const wishlistHTML = wishlist.map(item => `
             <div class="wishlistItem">
-                <h3>${item.name}</h3>
                 <img src="${item.image}" alt="${item.name}">
-                <p>Rating: ${item.rating}</p>
+                <h3>${item.name}</h3>
+                <p>⭐${item.rating}</p>
                 <div class="buttons">
                     <button onclick="deleteFromWishlist('${item.name}')"><i class="fa-solid fa-xmark"></i></button>
                     <button><a href="${item.url}" target="_blank"><i class="fa-solid fa-info"></i></a></button>
