@@ -135,16 +135,6 @@ header h1{
 #movieNameInput:hover{
 background-color:wheat;
 }
-.stars{
-    color: gold;
-    font-size: 24px;
-}
-.star{
-    cursor: pointer;
-}
-.moveitem{
-    background: white;
-}
 html, body {
     height: 100%;
     margin: 0;
@@ -184,16 +174,23 @@ html, body {
 .movieItem button{
     width: 40px;
     border-radius: 10px;
+    border: 1.2px green solid;
     cursor: pointer;
+    color: green;
     
 }
 .movieItem button a{
     text-decoration: none;
-    color: #24262b;
+    color: green;
 }
 .movieItem button:hover{
-    background-color:rgb(148, 148, 121);
+    background-color: green;
+    color:white;
     font-weight: bold;
+}
+.movieItem button a:hover{
+    font-weight: bold;
+    color: white;
 }
 #searchResultContainer{
     display: grid;
