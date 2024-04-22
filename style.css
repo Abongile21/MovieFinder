@@ -182,8 +182,13 @@ html, body {
     gap: 0.5rem;
 }
 .movieItem button{
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
+    
+}
+.movieItem button a{
+    text-decoration: none;
+    color: #24262b;
 }
 .movieItem button:hover{
     background-color:rgb(148, 148, 121);
