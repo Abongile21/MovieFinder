@@ -6,23 +6,33 @@ const searchResultContainer = document.getElementById('searchResultContainer');
 const wishlistContainer = document.getElementById('wishlistContainer');
 const recommendationContainer = document.getElementById('recommendationContainer');
 
+// Load wishlist on page load
+document.addEventListener('DOMContentLoaded', () => {
+    fetchWishlist();
+});
+
+// Show next slide
 function showNextSlide() {
     currentSlide = (currentSlide + 1) % images.length;
     displaySlide();
 }
 
+// Show previous slide
 function showPrevSlide() {
     currentSlide = (currentSlide - 1 + images.length) % images.length;
     displaySlide();
 }
 
+// Display slide
 function displaySlide() {
     slideshowContainer.innerHTML = `<img class="slides" src="images/${images[currentSlide]}" alt="Slide">`;
 }
 
+// Display slide initially and set interval
 displaySlide();
 setInterval(showNextSlide, 3000);
 
+// Search for movies
 async function searchMovie() {
     const movieName = movieNameInput.value.trim();
 
@@ -50,6 +60,7 @@ async function searchMovie() {
             searchResultContainer.innerHTML = movieHTML;
         } else {
             searchResultContainer.innerHTML = '<p>No movies found.</p>';
+            displaySlide(); // Display slide only when no search results are found
         }
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -57,117 +68,33 @@ async function searchMovie() {
     }
 }
 
-async function addToWishlist(index, movieName, movieImage, movieRating, imdbUrl) {
+// Add movie to wishlist
+function addToWishlist(index, movieName, movieImage, movieRating, imdbUrl) {
     const movie = { name: movieName, image: movieImage, rating: movieRating, url: imdbUrl };
     const wishlistButton = document.getElementById(`wishlistButton_${index}`);
 
-    fetchJSON('./wishlist.json')
-        .then(wishlist => {
-            if (!wishlist) {
-                wishlist = [];
-            }
-            const isDuplicate = wishlist.some(item => item.name === movieName);
-            if (isDuplicate) {
-                throw new Error(`${movieName} is already in your wishlist!`);
-            }
-
-            wishlist.push(movie);
-            return fetch('wishlist.json', {
-                method: 'POST',
-                body: JSON.stringify(wishlist),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        })
-        .then(() => {
-            wishlistButton.disabled = true;
-            wishlistButton.innerHTML = '<i class="fa-solid fa-check"></i>';
-            alert(`${movieName} added to wishlist!`);
-        })
-        .catch(error => console.error('Error updating wishlist:', error));
-}
-
-function deleteFromWishlist(movieName) {
-    fetch('wishlist.json')
-        .then(response => response.json())
-        .then(wishlist => {
-            const updatedWishlist = wishlist.filter(item => item.name !== movieName);
-            fetch('wishlist.json', {
-                method: 'POST',
-                body: JSON.stringify(updatedWishlist),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(() => alert(`${movieName} removed from wishlist.`))
-                .catch(error => console.error('Error updating wishlist:', error));
-        })
-        .catch(error => console.error('Error fetching wishlist:', error));
-}
-
-async function fetchJSON(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error('Network response was not ok.');
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Error fetching JSON data:', error);
-        return null; // Return null or handle the error appropriately
-    }
-}
-
-async function fetchRecommendationData() {
-    try {
-        const data = await fetchJSON('./recommendation.json');
-        if (data && data.recommendations) {
-            displayRecommendation(data.recommendations);
-        } else {
-            throw new Error('Invalid data format or empty response.');
-        }
-    } catch (error) {
-        console.error('Error fetching recommendation data:', error);
-        recommendationContainer.innerHTML = '<p>Error fetching recommendation data.</p>';
-    }
-}
-
-async function fetchWishlist() {
-    try {
-        const wishlist = await fetchJSON('./wishlist.json');
-        if (wishlist) {
-            displayWishlist(wishlist);
-        } else {
-            throw new Error('Invalid data format or empty response.');
-        }
-    } catch (error) {
-        console.error('Error fetching wishlist:', error);
-        wishlistContainer.innerHTML = '<p>Error fetching wishlist data.</p>';
-    }
-}
-
-function displayRecommendation(recommendations) {
-    if (recommendations.length > 0) {
-        const recommendationHTML = recommendations.map(movie => `
-            <div class="recommendedItem">
-                <img src="${movie.image}" alt="${movie.movie}">
-                <h3>${movie.movie}</h3>
-                <p>⭐${movie.rating}</p>
-                <div class="buttons">
-                    <button onclick="addToWishlist(${index}, '${movie.movie}', '${movie.image}', '${movie.rating}', '${movie.imdb_url}')"><i class="fa-regular fa-bookmark"></i></button>
-                    <button><a href="${movie.imdb_url}" target="_blank"><i class="fa-solid fa-info"></i></a></button>
-                </div>
-            </div>
-        `).join('');
-
-        recommendationContainer.innerHTML = recommendationHTML;
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const isDuplicate = wishlist.some(item => item.name === movieName);
+    if (isDuplicate) {
+        alert(`${movieName} is already in your wishlist!`);
     } else {
-        recommendationContainer.innerHTML = '<p>No recommendations available.</p>';
+        wishlist.push(movie);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        wishlistButton.disabled = true;
+        wishlistButton.innerHTML = '<i class="fa-solid fa-check"></i>';
+        alert(`${movieName} added to wishlist!`);
     }
 }
 
+// Fetch wishlist from localStorage and display
+function fetchWishlist() {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    displayWishlist(wishlist);
+}
+
+// Display wishlist items
 function displayWishlist(wishlist) {
+    const wishlistContainer = document.getElementById('wishlistContainer');
     if (wishlist.length > 0) {
         const wishlistHTML = wishlist.map(item => `
             <div class="wishlistItem">
@@ -186,8 +113,12 @@ function displayWishlist(wishlist) {
         wishlistContainer.innerHTML = '<p>Your wishlist is empty.</p>';
     }
 }
-document.addEventListener('DOMContentLoaded', () => {
-    fetchRecommendationData();
-    fetchWishlist();
-});
 
+// Delete movie from wishlist
+function deleteFromWishlist(movieName) {
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const updatedWishlist = wishlist.filter(item => item.name !== movieName);
+    localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
+    alert(`${movieName} removed from wishlist.`);
+    displayWishlist(updatedWishlist);
+}
