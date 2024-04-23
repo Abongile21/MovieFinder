@@ -84,6 +84,11 @@ header h1{
     color: black;
     cursor: pointer;
 }
+
+p{
+    color: rgb(235, 223, 62);
+    font-size: 20px;
+}
 #movieNameInput{
     border-radius: 20px;
     width: 250px;
