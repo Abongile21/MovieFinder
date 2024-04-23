@@ -8,6 +8,10 @@ const recommendationContainer = document.getElementById('recommendationContainer
 
 // Load wishlist on page load
 document.addEventListener('DOMContentLoaded', () => {
+    displaySlide();
+    setInterval(showNextSlide, 3000);
+
+
     fetchWishlist();
 });
 
@@ -29,9 +33,6 @@ function displaySlide() {
 }
 
 // Display slide initially and set interval
-displaySlide();
-setInterval(showNextSlide, 3000);
-
 // Search for movies
 async function searchMovie() {
     const movieName = movieNameInput.value.trim();
