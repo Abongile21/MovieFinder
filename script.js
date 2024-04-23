@@ -5,14 +5,14 @@ const movieNameInput = document.getElementById('movieNameInput');
 const searchResultContainer = document.getElementById('searchResultContainer');
 const wishlistContainer = document.getElementById('wishlistContainer');
 const recommendationContainer = document.getElementById('recommendationContainer');
+let isDisplayed = true;
+let isDisplayedW= false;
 
 // Load wishlist on page load
 document.addEventListener('DOMContentLoaded', () => {
     displaySlide();
     setInterval(showNextSlide, 3000);
-
-
-    fetchWishlist();
+    // fetchWishlist();
 });
 
 // Show next slide
@@ -36,6 +36,14 @@ function displaySlide() {
 // Search for movies
 async function searchMovie() {
     const movieName = movieNameInput.value.trim();
+
+    if(isDisplayedW){
+        
+        wishlistContainer.style.display= 'none'
+        slideshowContainer.style.display='none'
+        isDisplayed=true
+        isDisplayedW=false;
+    }
 
     try {
         const response = await fetch('movies.json');
@@ -91,6 +99,12 @@ function addToWishlist(index, movieName, movieImage, movieRating, imdbUrl) {
 function fetchWishlist() {
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     displayWishlist(wishlist);
+    if(isDisplayed){
+        searchResultContainer.style.display= 'none'
+        slideshowContainer.style.display='none'
+        isDisplayed=false
+        isDisplayedW=true
+    }
 }
 
 // Display wishlist items
