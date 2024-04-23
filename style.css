@@ -9,7 +9,7 @@ body{
 .container{
     width: 80%;
     overflow: hidden;
-    margin: auto;
+    margin-left: 20px;
 }
 /*header*/
 header{
@@ -91,6 +91,7 @@ header h1{
     text-align: center;
     border: solid black 2px;
     color: green;
+    margin-left: 50px;
     
 }
 #movieNameInput:hover{
@@ -167,6 +168,7 @@ html, body {
     display: flex;
     justify-content: center;
     scale: 1.2;
+    height: 40%;
 }
 
 /*footer*/
