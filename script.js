@@ -60,7 +60,7 @@ async function searchMovie() {
             searchResultContainer.innerHTML = movieHTML;
         } else {
             searchResultContainer.innerHTML = '<p>No movies found.</p>';
-            displaySlide(); // Display slide only when no search results are found
+            displaySlide();
         }
     } catch (error) {
         console.error('Error fetching data:', error);
