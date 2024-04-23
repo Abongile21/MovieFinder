@@ -18,9 +18,9 @@
           <button onclick="searchMovie()" id="searchBtn">LIST</button>
            <nav>
                 <ul>
-                    <li><a href="#" onclick="toggleContainerVisibility('searchResultContainer')">Home</a></li>
-                    <li><a href="#" onclick="toggleContainerVisibility('wishlistContainer')">WishList</a></li>
-                    <li><a href="#" onclick="toggleContainerVisibility('recommendationContainer')">Recommendation</a></li>
+                    <li id="_home" class="current"><a href="index.html">Home</a></li>
+                    <li><a href="#" onclick="fetchWishlist()">WishList</a></li>
+                    <li><a href="#recommendationContainer">Recommendation</a></li>
                     <li><a href="Sign out.html">Sign Out</a></li>
                 </ul>
            </nav>
@@ -28,9 +28,10 @@
     </header>
 
     
-    <div id="searchResultContainer" style="display:none;"></div>
+    <div id="searchResultContainer"></div>
+    <div id="recommndationContainer"></div>
     <div id="wishlistContainer" style="display:none;"></div>
-    <div id="recommendationContainer" style="display:none;"></div>
+
 
     <div id="imageshow"></div>
     

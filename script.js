@@ -6,27 +6,33 @@ const searchResultContainer = document.getElementById('searchResultContainer');
 const wishlistContainer = document.getElementById('wishlistContainer');
 const recommendationContainer = document.getElementById('recommendationContainer');
 
+// Load wishlist on page load
 document.addEventListener('DOMContentLoaded', () => {
     fetchWishlist();
 });
 
+// Show next slide
 function showNextSlide() {
     currentSlide = (currentSlide + 1) % images.length;
     displaySlide();
 }
 
+// Show previous slide
 function showPrevSlide() {
     currentSlide = (currentSlide - 1 + images.length) % images.length;
     displaySlide();
 }
 
+// Display slide
 function displaySlide() {
     slideshowContainer.innerHTML = `<img class="slides" src="images/${images[currentSlide]}" alt="Slide">`;
 }
 
+// Display slide initially and set interval
 displaySlide();
 setInterval(showNextSlide, 3000);
 
+// Search for movies
 async function searchMovie() {
     const movieName = movieNameInput.value.trim();
 
@@ -45,7 +51,7 @@ async function searchMovie() {
                     <h3>${foundMovie.movie}</h3>
                     <p>⭐${foundMovie.rating}</p>
                     <div class="buttons">
-                        <button onclick="addToPlaylist('${foundMovie.movie}', '${foundMovie.image}', '${foundMovie.rating}', '${foundMovie.imdb_url}')"><i class="fa-regular fa-bookmark"></i> Add to Playlist</button>
+                        <button id="wishlistButton_${index}" onclick="addToWishlist(${index}, '${foundMovie.movie}', '${foundMovie.image}', '${foundMovie.rating}', '${foundMovie.imdb_url}')"><i class="fa-regular fa-bookmark"></i></button>
                         <button><a href="${foundMovie.imdb_url}" target="_blank"><i class="fa-solid fa-info"></i></a></button>
                     </div>
                 </div>
@@ -54,7 +60,7 @@ async function searchMovie() {
             searchResultContainer.innerHTML = movieHTML;
         } else {
             searchResultContainer.innerHTML = '<p>No movies found.</p>';
-            displaySlide();
+            displaySlide(); // Display slide only when no search results are found
         }
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -62,21 +68,33 @@ async function searchMovie() {
     }
 }
 
-function addToPlaylist(movieName, movieImage, movieRating, imdbUrl) {
+// Add movie to wishlist
+function addToWishlist(index, movieName, movieImage, movieRating, imdbUrl) {
     const movie = { name: movieName, image: movieImage, rating: movieRating, url: imdbUrl };
+    const wishlistButton = document.getElementById(`wishlistButton_${index}`);
 
-    let playlist = JSON.parse(localStorage.getItem('playlist')) || [];
-    playlist.push(movie);
-    localStorage.setItem('playlist', JSON.stringify(playlist));
-    alert(`${movieName} added to playlist!`);
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const isDuplicate = wishlist.some(item => item.name === movieName);
+    if (isDuplicate) {
+        alert(`${movieName} is already in your wishlist!`);
+    } else {
+        wishlist.push(movie);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        wishlistButton.disabled = true;
+        wishlistButton.innerHTML = '<i class="fa-solid fa-check"></i>';
+        alert(`${movieName} added to wishlist!`);
+    }
 }
 
+// Fetch wishlist from localStorage and display
 function fetchWishlist() {
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     displayWishlist(wishlist);
 }
 
+// Display wishlist items
 function displayWishlist(wishlist) {
+    const wishlistContainer = document.getElementById('wishlistContainer');
     if (wishlist.length > 0) {
         const wishlistHTML = wishlist.map(item => `
             <div class="wishlistItem">
@@ -96,19 +114,11 @@ function displayWishlist(wishlist) {
     }
 }
 
+// Delete movie from wishlist
 function deleteFromWishlist(movieName) {
     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     const updatedWishlist = wishlist.filter(item => item.name !== movieName);
     localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
     alert(`${movieName} removed from wishlist.`);
-    fetchWishlist();
-}
-
-function toggleContainerVisibility(containerId) {
-    const container = document.getElementById(containerId);
-    if (container.style.display === 'none') {
-        container.style.display = 'block';
-    } else {
-        container.style.display = 'none';
-    }
+    displayWishlist(updatedWishlist);
 }
