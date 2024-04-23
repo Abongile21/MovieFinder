@@ -167,8 +167,13 @@ html, body {
     display: flex;
     justify-content: center;
     scale: 1.2;
+    height: fit-content;
+    margin-bottom: 100px;
+    margin-top: 50px;
 }
-
+#imageshow img{
+    height: 250px;
+}
 /*footer*/
 
 *{
