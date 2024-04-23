@@ -1,18 +1,20 @@
 const images = ['lion_king.jpg', 'avengers_endgame.jpg', 'her.jpg', 'fences.jpg'];
 let currentSlide = 0;
+
 const slideshowContainer = document.getElementById('imageshow');
 const movieNameInput = document.getElementById('movieNameInput');
 const searchResultContainer = document.getElementById('searchResultContainer');
 const wishlistContainer = document.getElementById('wishlistContainer');
 const recommendationContainer = document.getElementById('recommendationContainer');
-
+let isDlayed = true 
+let isDlayedW = false 
 // Load wishlist on page load
 document.addEventListener('DOMContentLoaded', () => {
     displaySlide();
     setInterval(showNextSlide, 3000);
 
 
-    fetchWishlist();
+    // fetchWishlist();
 });
 
 // Show next slide
@@ -35,6 +37,14 @@ function displaySlide() {
 // Display slide initially and set interval
 // Search for movies
 async function searchMovie() {
+
+    if(isDlayedW){
+        wishlistContainer.style.display = 'none'
+        searchResultContainer.style.display = "grid";
+        isDlayedW = false 
+        isDlayed = true
+    }
+
     const movieName = movieNameInput.value.trim();
 
     try {
@@ -87,10 +97,24 @@ function addToWishlist(index, movieName, movieImage, movieRating, imdbUrl) {
     }
 }
 
+
 // Fetch wishlist from localStorage and display
 function fetchWishlist() {
+    wishlistContainer.style.display = "grid"
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     displayWishlist(wishlist);
+
+    if(isDlayed){
+        slideshowContainer.style.display = "none";
+        searchResultContainer.style.display = "none";
+        isDlayed = false
+        isDlayedW = true
+        console.log(isDlayed, isDlayedW)
+    }
+    
+
+
+    
 }
 
 // Display wishlist items
@@ -106,6 +130,8 @@ function displayWishlist(wishlist) {
                     <button onclick="deleteFromWishlist('${item.name}')"><i class="fa-solid fa-xmark"></i></button>
                     <button><a href="${item.url}" target="_blank"><i class="fa-solid fa-info"></i></a></button>
                 </div>
+
+        
             </div>
         `).join('');
 
@@ -123,3 +149,7 @@ function deleteFromWishlist(movieName) {
     alert(`${movieName} removed from wishlist.`);
     displayWishlist(updatedWishlist);
 }
+
+// wishlistContainer.addEventListener("click",()=>{
+//     wishlistContainer.style.display = "none"
+// })
