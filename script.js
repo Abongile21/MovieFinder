@@ -30,7 +30,7 @@ function displaySlide() {
 
 // Display slide initially and set interval
 displaySlide();
-setInterval(showNextSlide, 3000);
+setInterval(showNextSlide, 7000);
 
 // Search for movies
 async function searchMovie() {
@@ -58,6 +58,7 @@ async function searchMovie() {
             `).join('');
 
             searchResultContainer.innerHTML = movieHTML;
+            wishlistContainer.style.display= 'none'
         } else {
             searchResultContainer.innerHTML = '<p>No movies found.</p>';
             displaySlide(); // Display slide only when no search results are found
@@ -90,6 +91,8 @@ function addToWishlist(index, movieName, movieImage, movieRating, imdbUrl) {
 function fetchWishlist() {
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     displayWishlist(wishlist);
+    searchResultContainer.style.display ='none'
+    slideshowContainer.style.display='none'
 }
 
 // Display wishlist items
