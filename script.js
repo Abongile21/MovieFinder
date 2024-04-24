@@ -66,7 +66,6 @@ function addToWishlist(index, movieName, movieImage, movieRating, imdbUrl) {
 }
 
 function fetchWishlist() {
-    console.log(">>>>")
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     
     displayWishlist(wishlist);
@@ -75,7 +74,6 @@ function fetchWishlist() {
 
 function displayWishlist(wishlist) {
     if (wishlist.length != 0) {
-        console.log(">>> ", wishlist)
         const wishlistHTML = wishlist.map(item => `
             <div class="wishlistItem">
                 <img src="${item.image}" alt="${item.name}">
@@ -170,14 +168,6 @@ function styleNavigationLinks() {
   
         link.style.borderBottom = "2px solid white";
       });
-  
-      //link.addEventListener("mouseenter", () => { link.style.borderBottom = "2px solid #1abc9c"; });
-  
-    //   link.addEventListener("mouseleave", () => {
-    //     if (link.href !== window.location.href) { link.style.borderBottom = "none"; }
-    //   });
-  
-      //if (link.href === window.location.href) { link.style.borderBottom = "2px solid #777"; }
     });
 }
   
