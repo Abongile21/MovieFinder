@@ -119,7 +119,6 @@ html, body {
 }
 .wishlistItem, p{
     color: black;
-    font-size: 25px;
 }
 .wishlistItem button{
     border-radius: 10px;
