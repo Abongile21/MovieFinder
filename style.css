@@ -85,10 +85,6 @@ header h1{
     cursor: pointer;
 }
 
-p{
-    color: rgb(235, 223, 62);
-    font-size: 20px;
-}
 #movieNameInput{
     border-radius: 20px;
     width: 250px;
@@ -121,8 +117,9 @@ html, body {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     
 }
-.wishlistItem{
-
+.wishlistItem, p{
+    color: black;
+    font-size: 20px;
 }
 .movieItem:hover{
     scale: 1.07; 
