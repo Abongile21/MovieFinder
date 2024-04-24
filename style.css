@@ -24,7 +24,6 @@ header a{
     text-decoration: none;
     text-transform: uppercase;
     font-size: 16px;
-    text-shadow: 2px 2px 2px green;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 header ul{
@@ -282,3 +281,4 @@ ul {
         width: 100%;
     }
 }
+/*---------about page-------*/

@@ -11,7 +11,7 @@ const recommendationContainer = document.getElementById('recommendationContainer
 document.addEventListener('DOMContentLoaded', () => {
     // displaySlide();
     // setInterval(showNextSlide, 3000);
-    // // searchMovie();
+    searchMovie();
     display("main");
 });
 
