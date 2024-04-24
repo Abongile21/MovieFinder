@@ -126,7 +126,7 @@ html, body {
 
 }
 .wishlistItem:hover{
-    scale: 1.05px
+    transform: scale(1.05);
 }
 .wishlistItem button:hover{
     background-color: green;
