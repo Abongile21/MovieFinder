@@ -6,43 +6,32 @@ const movieNameInput = document.getElementById('movieNameInput');
 const searchResultContainer = document.getElementById('searchResultContainer');
 const wishlistContainer = document.getElementById('wishlistContainer');
 const recommendationContainer = document.getElementById('recommendationContainer');
-let isDlayed = true 
-let isDlayedW = false 
+
 document.addEventListener('DOMContentLoaded', () => {
     displaySlide();
     setInterval(showNextSlide, 3000);
-    searchMovie()
-
-    display("main")
-
-    // fetchWishlist();
+    searchMovie();
+    display("main");
 });
 
-// Show next slide
 function showNextSlide() {
     currentSlide = (currentSlide + 1) % images.length;
     displaySlide();
 }
+
 function showPrevSlide() {
     currentSlide = (currentSlide - 1 + images.length) % images.length;
     displaySlide();
 }
+
 function displaySlide() {
     slideshowContainer.innerHTML = `<img class="slides" src="images/${images[currentSlide]}" alt="Slide">`;
 }
+
 async function searchMovie() {
-
-    if(isDlayedW){
-        wishlistContainer.style.display = 'none'
-        searchResultContainer.style.display = "grid";
-        isDlayedW = false 
-        isDlayed = true
-    }
-
     const movieName = movieNameInput.value.trim();
 
-
-    try {
+    try {                                                                            
         const response = await fetch('movies.json');
         const data = await response.json();
 
@@ -74,7 +63,6 @@ async function searchMovie() {
     }
 }
 
-// Add movie to wishlist
 function addToWishlist(index, movieName, movieImage, movieRating, imdbUrl) {
     const movie = { name: movieName, image: movieImage, rating: movieRating, url: imdbUrl };
     const wishlistButton = document.getElementById(`wishlistButton_${index}`);
@@ -92,17 +80,13 @@ function addToWishlist(index, movieName, movieImage, movieRating, imdbUrl) {
     }
 }
 
-
-// Fetch wishlist from localStorage and display
 function fetchWishlist() {
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     displayWishlist(wishlist);
-    display("wish")
+    display("wish");
 }
 
-// Display wishlist items
 function displayWishlist(wishlist) {
-    const wishlistContainer = document.getElementById('wishlistContainer');
     if (wishlist.length > 0) {
         const wishlistHTML = wishlist.map(item => `
             <div class="wishlistItem">
@@ -113,8 +97,6 @@ function displayWishlist(wishlist) {
                     <button onclick="deleteFromWishlist('${item.name}')"><i class="fa-solid fa-xmark"></i></button>
                     <button><a href="${item.url}" target="_blank"><i class="fa-solid fa-info"></i></a></button>
                 </div>
-
-        
             </div>
         `).join('');
 
@@ -123,6 +105,7 @@ function displayWishlist(wishlist) {
         wishlistContainer.innerHTML = '<p>Your wishlist is empty.</p>';
     }
 }
+
 function deleteFromWishlist(movieName) {
     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     const updatedWishlist = wishlist.filter(item => item.name !== movieName);
@@ -165,34 +148,27 @@ function displayRecommendations(recommendedMovies) {
     }
 }
 
-function display(cont){
-
-    switch(cont){
+function display(cont) {
+    switch (cont) {
         case "main":
-            wishlistContainer.style.display = 'none'
+            wishlistContainer.style.display = 'none';
             searchResultContainer.style.display = "grid";
             recommendationContainer.style.display = "none";
-
+            slideshowContainer.style.display = "block";
             break;
 
-            case "wish":
-                wishlistContainer.style.display = 'grid'
-                searchResultContainer.style.display = "none";
-                recommendationContainer.style.display = "none";
+        case "wish":
+            wishlistContainer.style.display = 'grid';
+            searchResultContainer.style.display = "none";
+            recommendationContainer.style.display = "none";
+            slideshowContainer.style.display = "none";
             break;
 
-            case "recom":
-                wishlistContainer.style.display = 'none'
-                searchResultContainer.style.display = "none";
-                recommendationContainer.style.display = "grid";
-            
+        case "recom":
+            wishlistContainer.style.display = 'none';
+            searchResultContainer.style.display = "none";
+            recommendationContainer.style.display = "grid";
+            slideshowContainer.style.display = "none";
             break;
     }
-    
 }
-
-
-
-// wishlistContainer.addEventListener("click",()=>{
-//     wishlistContainer.style.display = "none"
-// })
