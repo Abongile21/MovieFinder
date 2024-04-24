@@ -152,6 +152,41 @@ function deleteFromWishlist(movieName) {
     displayWishlist(updatedWishlist);
 }
 
+function calculateAverageRating(wishlist) {
+    if (wishlist.length === 0) return 0;
+
+    const totalRating = wishlist.reduce((sum, movie) => sum + parseFloat(movie.rating), 0);
+    return totalRating / wishlist.length;
+}
+
+function recommendMovies() {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const averageRating = calculateAverageRating(wishlist);
+
+    const recommendedMovies = data.filter(movie => parseFloat(movie.rating) > averageRating);
+    displayRecommendations(recommendedMovies);
+}
+
+function displayRecommendations(recommendedMovies) {
+    if (recommendedMovies.length > 0) {
+        const recommendationHTML = recommendedMovies.map(movie => `
+            <div class="movieItem">
+                <img src="${movie.image}" alt="${movie.movie}">
+                <h3>${movie.movie}</h3>
+                <p>⭐${movie.rating}</p>
+                <div class="buttons">
+                    <button><a href="${movie.imdb_url}" target="_blank"><i class="fa-solid fa-info"></i></a></button>
+                </div>
+            </div>
+        `).join('');
+
+        recommendationContainer.innerHTML = recommendationHTML;
+    } else {
+        recommendationContainer.innerHTML = '<p>No recommendations based on your wishlist.</p>';
+    }
+}
+
+
 // wishlistContainer.addEventListener("click",()=>{
 //     wishlistContainer.style.display = "none"
 // })
