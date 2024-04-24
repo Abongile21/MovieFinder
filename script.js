@@ -8,7 +8,6 @@ const wishlistContainer = document.getElementById('wishlistContainer');
 const recommendationContainer = document.getElementById('recommendationContainer');
 let isDlayed = true 
 let isDlayedW = false 
-// Load wishlist on page load
 document.addEventListener('DOMContentLoaded', () => {
     displaySlide();
     setInterval(showNextSlide, 3000);
@@ -24,20 +23,13 @@ function showNextSlide() {
     currentSlide = (currentSlide + 1) % images.length;
     displaySlide();
 }
-
-// Show previous slide
 function showPrevSlide() {
     currentSlide = (currentSlide - 1 + images.length) % images.length;
     displaySlide();
 }
-
-// Display slide
 function displaySlide() {
     slideshowContainer.innerHTML = `<img class="slides" src="images/${images[currentSlide]}" alt="Slide">`;
 }
-
-// Display slide initially and set interval
-// Search for movies
 async function searchMovie() {
 
     if(isDlayedW){
@@ -131,8 +123,6 @@ function displayWishlist(wishlist) {
         wishlistContainer.innerHTML = '<p>Your wishlist is empty.</p>';
     }
 }
-
-// Delete movie from wishlist
 function deleteFromWishlist(movieName) {
     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     const updatedWishlist = wishlist.filter(item => item.name !== movieName);
