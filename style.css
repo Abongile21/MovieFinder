@@ -124,6 +124,22 @@ html, body {
 .wishlistItem:hover {
     transform: scale(1.05);
 }
+.wishlistItem button{
+    border-radius: 10px;
+    border: 1.2px green solid;
+    cursor: pointer;
+    width: 40px;
+    color: green;
+
+}
+.wishlistItem button:hover{
+    background-color: green;
+    color: white;
+    font-weight: bold;
+}
+.wishlistItem .buttons, p{
+    color: black;
+}
 .movieItem:hover{
     scale: 1.07; 
     
