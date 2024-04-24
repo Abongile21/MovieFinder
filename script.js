@@ -7,6 +7,7 @@ const searchResultContainer = document.getElementById('searchResultContainer');
 const wishlistContainer = document.getElementById('wishlistContainer');
 const recommendationContainer = document.getElementById('recommendationContainer');
 
+
 document.addEventListener('DOMContentLoaded', () => {
     displaySlide();
     setInterval(showNextSlide, 3000);
@@ -38,6 +39,7 @@ async function searchMovie() {
         const filteredMovies = data.filter(movie =>
             movie.movie.toLowerCase().includes(movieName.toLowerCase())
         );
+       
 
         if (filteredMovies.length > 0) {
             const movieHTML = filteredMovies.map((foundMovie, index) => `
@@ -81,13 +83,16 @@ function addToWishlist(index, movieName, movieImage, movieRating, imdbUrl) {
 }
 
 function fetchWishlist() {
+    console.log(">>>>")
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    
     displayWishlist(wishlist);
     display("wish");
 }
 
 function displayWishlist(wishlist) {
-    if (wishlist.length > 0) {
+    if (wishlist.length != 0) {
+        console.log(">>> ", wishlist)
         const wishlistHTML = wishlist.map(item => `
             <div class="wishlistItem">
                 <img src="${item.image}" alt="${item.name}">
@@ -110,7 +115,6 @@ function deleteFromWishlist(movieName) {
     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     const updatedWishlist = wishlist.filter(item => item.name !== movieName);
     localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
-    alert(`${movieName} removed from wishlist.`);
     displayWishlist(updatedWishlist);
 }
 
@@ -118,23 +122,26 @@ function calculateAverageRating(wishlist) {
     if (wishlist.length === 0) return 0;
 
     const totalRating = wishlist.reduce((sum, movie) => sum + parseFloat(movie.rating), 0);
+    
     return totalRating / wishlist.length;
 }
 
 function recommendMovies() {
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     const averageRating = calculateAverageRating(wishlist);
-
-    const recommendedMovies = data.filter(movie => parseFloat(movie.rating) > averageRating);
+    display("recom")
+    const recommendedMovies = wishlist.filter(movie => String(parseFloat(movie.rating)).startsWith(String(averageRating)[0]));
+    alert(String(averageRating)[0])
     displayRecommendations(recommendedMovies);
 }
+
 
 function displayRecommendations(recommendedMovies) {
     if (recommendedMovies.length > 0) {
         const recommendationHTML = recommendedMovies.map(movie => `
             <div class="movieItem">
-                <img src="${movie.image}" alt="${movie.movie}">
-                <h3>${movie.movie}</h3>
+                <img src="${movie.image}" alt="${movie.name}">
+                <h3>${movie.name}</h3>
                 <p>⭐${movie.rating}</p>
                 <div class="buttons">
                     <button><a href="${movie.imdb_url}" target="_blank"><i class="fa-solid fa-play"></i></a></button>

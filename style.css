@@ -156,11 +156,16 @@ html, body {
     font-weight: bold;
     color: white;
 }
-#searchResultContainer, #wishlistContainer{
+#searchResultContainer, #wishlistContainer,#recommendationContainer{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 1px;
     padding: 10px; 
+}
+.wishlistItem .buttons button a{
+    text-decoration: none;
+    color:green;
+
 }
 
 #_more a{ 
