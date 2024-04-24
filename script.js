@@ -47,13 +47,7 @@ async function searchMovie() {
 
     const movieName = movieNameInput.value.trim();
 
-    if(isDisplayedW){
-        
-        wishlistContainer.style.display= 'none'
-        slideshowContainer.style.display='none'
-        isDisplayed=true
-        isDisplayedW=false;
-    }
+    
 
     try {
         const response = await fetch('movies.json');
