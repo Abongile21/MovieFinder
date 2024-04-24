@@ -1,7 +1,6 @@
 const images = ['lion_king.jpg', 'avengers_endgame.jpg', 'her.jpg', 'fences.jpg'];
 let currentSlide = 0;
 
-const slideshowContainer = document.getElementById('imageshow');
 const movieNameInput = document.getElementById('movieNameInput');
 const searchResultContainer = document.getElementById('searchResultContainer');
 const wishlistContainer = document.getElementById('wishlistContainer');
@@ -9,25 +8,9 @@ const recommendationContainer = document.getElementById('recommendationContainer
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // displaySlide();
-    // setInterval(showNextSlide, 3000);
     searchMovie();
     display("main");
 });
-
-function showNextSlide() {
-    currentSlide = (currentSlide + 1) % images.length;
-    displaySlide();
-}
-
-function showPrevSlide() {
-    currentSlide = (currentSlide - 1 + images.length) % images.length;
-    displaySlide();
-}
-
-function displaySlide() {
-    slideshowContainer.innerHTML = `<img class="slides" src="images/${images[currentSlide]}" alt="Slide">`;
-}
 
 async function searchMovie() {
     const movieName = movieNameInput.value.trim();
@@ -159,22 +142,19 @@ function display(cont) {
         case "main":
             wishlistContainer.style.display = 'none';
             searchResultContainer.style.display = "grid";
-            recommendationContainer.style.display = "none";
-            slideshowContainer.style.display = "block";
+            recommendationContainer.style.display = "none"
             break;
 
         case "wish":
             wishlistContainer.style.display = 'grid';
             searchResultContainer.style.display = "none";
             recommendationContainer.style.display = "none";
-            slideshowContainer.style.display = "none";
             break;
 
         case "recom":
             wishlistContainer.style.display = 'none';
             searchResultContainer.style.display = "none";
             recommendationContainer.style.display = "grid";
-            slideshowContainer.style.display = "none";
             break;
     }
 }

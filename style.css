@@ -12,12 +12,27 @@ body{
     margin-left: 20px;
 }
 /*header*/
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s; /* Smooth color transition */
+}
+  
+ 
+  
+nav ul li a:active {
+    color: green; /* Gray color for visited links */
+}
+  
+
+
 header{
     background: black;
     color: white;
     padding-top: 30px;
     min-height: 70px;
-    border-bottom: green 3px solid;
+    border-bottom: rgb(87, 151, 87) 3px solid;
 }
 header a{
     color:white;
@@ -47,7 +62,7 @@ header nav{
     float: right;
     margin-top: 10px;
 }
-header .highlight, header .current a{
+header .highlight{
     color: green;
     font-weight: bold;
 }
@@ -74,7 +89,7 @@ header h1{
     height: 30px;
     text-align: center;
     border: solid black 2px;
-    color: green;
+    color: black;
     margin-left: 50px;   
 }
 #movieNameInput:hover{
