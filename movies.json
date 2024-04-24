@@ -308,13 +308,6 @@
         "imdb_url": "https://www.imdb.com/title/tt1285016/"
     },
     {
-        "id": 45,
-        "movie": "Joker",
-        "rating": 8.5,
-        "image": "images/joker.jpg",
-        "imdb_url": "https://www.imdb.com/title/tt7286456/"
-    },
-    {
         "id": 46,
         "movie": "Avengers: Infinity War",
         "rating": 8.4,
@@ -355,13 +348,6 @@
         "rating": 8.1,
         "image": "images/mad_max_fury_road.jpg",
         "imdb_url": "https://www.imdb.com/title/tt1392190/"
-    },
-    {
-        "id": 52,
-        "movie": "Spotlight",
-        "rating": 8.1,
-        "image": "images/spotlight.jpg",
-        "imdb_url": "https://www.imdb.com/title/tt1895587/"
     },
     {
         "id": 53,
@@ -455,25 +441,11 @@
         "imdb_url": "https://www.imdb.com/title/tt2671706/"
     },
     {
-        "id": 66,
-        "movie": "Zootopia",
-        "rating": 8,
-        "image": "images/zootopia.jpg",
-        "imdb_url": "https://www.imdb.com/title/tt2948356/"
-    },
-    {
         "id": 67,
         "movie": "Moana",
         "rating": 7.6,
         "image": "images/moana.jpg",
         "imdb_url": "https://www.imdb.com/title/tt3521164/"
-    },
-    {
-        "id": 68,
-        "movie": "Trolls",
-        "rating": 6.5,
-        "image": "images/trolls.jpg",
-        "imdb_url": "https://www.imdb.com/title/tt1679335/"
     },
     {
         "id": 69,
@@ -530,13 +502,6 @@
         "rating": 7.8,
         "image": "images/rogue_one.jpg",
         "imdb_url": "https://www.imdb.com/title/tt3748528/"
-    },
-    {
-        "id": 77,
-        "movie": "Logan",
-        "rating": 8.1,
-        "image": "images/logan.jpg",
-        "imdb_url": "https://www.imdb.com/title/tt3315342/"
     },
     {
         "id": 78,
@@ -657,13 +622,7 @@
         "image": "images/jojo_rabbit.jpg",
         "imdb_url": "https://www.imdb.com/title/tt2584384/"
     },
-    {
-        "id": 95,
-        "movie": "Joker",
-        "rating": 8.5,
-        "image": "images/joker.jpg",
-        "imdb_url": "https://www.imdb.com/title/tt7286456/"
-    },
+    
     {
         "id": 96,
         "movie": "Parasite",
