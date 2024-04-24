@@ -177,7 +177,7 @@ function styleNavigationLinks() {
         if (link.href !== window.location.href) { link.style.borderBottom = "none"; }
       });
   
-      if (link.href === window.location.href) { link.style.borderBottom = "2px solid #777"; }
+      //if (link.href === window.location.href) { link.style.borderBottom = "2px solid #777"; }
     });
 }
   
