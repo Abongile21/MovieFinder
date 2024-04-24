@@ -12,7 +12,9 @@ let isDlayedW = false
 document.addEventListener('DOMContentLoaded', () => {
     displaySlide();
     setInterval(showNextSlide, 3000);
+    searchMovie()
 
+    display("main")
 
     // fetchWishlist();
 });
@@ -47,7 +49,6 @@ async function searchMovie() {
 
     const movieName = movieNameInput.value.trim();
 
-    
 
     try {
         const response = await fetch('movies.json');
@@ -102,21 +103,9 @@ function addToWishlist(index, movieName, movieImage, movieRating, imdbUrl) {
 
 // Fetch wishlist from localStorage and display
 function fetchWishlist() {
-    wishlistContainer.style.display = "grid"
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     displayWishlist(wishlist);
-
-    if(isDlayed){
-        slideshowContainer.style.display = "none";
-        searchResultContainer.style.display = "none";
-        isDlayed = false
-        isDlayedW = true
-        console.log(isDlayed, isDlayedW)
-    }
-    
-
-
-    
+    display("wish")
 }
 
 // Display wishlist items
@@ -185,6 +174,33 @@ function displayRecommendations(recommendedMovies) {
         recommendationContainer.innerHTML = '<p>No recommendations based on your wishlist.</p>';
     }
 }
+
+function display(cont){
+
+    switch(cont){
+        case "main":
+            wishlistContainer.style.display = 'none'
+            searchResultContainer.style.display = "grid";
+            recommendationContainer.style.display = "none";
+
+            break;
+
+            case "wish":
+                wishlistContainer.style.display = 'grid'
+                searchResultContainer.style.display = "none";
+                recommendationContainer.style.display = "none";
+            break;
+
+            case "recom":
+                wishlistContainer.style.display = 'none'
+                searchResultContainer.style.display = "none";
+                recommendationContainer.style.display = "grid";
+            
+            break;
+    }
+    
+}
+
 
 
 // wishlistContainer.addEventListener("click",()=>{
