@@ -10,7 +10,7 @@ const recommendationContainer = document.getElementById('recommendationContainer
 document.addEventListener('DOMContentLoaded', () => {
     searchMovie();
     display("main");
-    styleNavigationLinks()
+    styleNavigationLinks();
 });
 
 async function searchMovie() {
@@ -163,8 +163,8 @@ function styleNavigationLinks() {
     var navLinks = document.querySelectorAll("nav ul li a");
   
     navLinks.forEach(function (link) {
-      link.addEventListener("click", function (event) {
-        event.preventDefault();
+      link.addEventListener("click", function () {
+        
   
         navLinks.forEach(l => { l.style.textDecoration = l.style.borderBottom = ""; });
   
@@ -173,9 +173,9 @@ function styleNavigationLinks() {
   
       //link.addEventListener("mouseenter", () => { link.style.borderBottom = "2px solid #1abc9c"; });
   
-      link.addEventListener("mouseleave", () => {
-        if (link.href !== window.location.href) { link.style.borderBottom = "none"; }
-      });
+    //   link.addEventListener("mouseleave", () => {
+    //     if (link.href !== window.location.href) { link.style.borderBottom = "none"; }
+    //   });
   
       //if (link.href === window.location.href) { link.style.borderBottom = "2px solid #777"; }
     });
