@@ -9,9 +9,9 @@ const recommendationContainer = document.getElementById('recommendationContainer
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    displaySlide();
-    setInterval(showNextSlide, 3000);
-    searchMovie();
+    // displaySlide();
+    // setInterval(showNextSlide, 3000);
+    // // searchMovie();
     display("main");
 });
 
@@ -57,7 +57,6 @@ async function searchMovie() {
             searchResultContainer.innerHTML = movieHTML;
         } else {
             searchResultContainer.innerHTML = '<p>No movies found.</p>';
-            displaySlide();
         }
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -131,7 +130,7 @@ function recommendMovies() {
     const averageRating = calculateAverageRating(wishlist);
     display("recom")
     const recommendedMovies = wishlist.filter(movie => String(parseFloat(movie.rating)).startsWith(String(averageRating)[0]));
-    alert(String(averageRating)[0])
+    
     displayRecommendations(recommendedMovies);
 }
 
