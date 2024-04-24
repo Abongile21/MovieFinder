@@ -6,8 +6,6 @@ const movieNameInput = document.getElementById('movieNameInput');
 const searchResultContainer = document.getElementById('searchResultContainer');
 const wishlistContainer = document.getElementById('wishlistContainer');
 const recommendationContainer = document.getElementById('recommendationContainer');
-let isDlayed = true 
-let isDlayedW = false 
 document.addEventListener('DOMContentLoaded', () => {
     displaySlide();
     setInterval(showNextSlide, 3000);
@@ -32,12 +30,7 @@ function displaySlide() {
 }
 async function searchMovie() {
 
-    if(isDlayedW){
-        wishlistContainer.style.display = 'none'
-        searchResultContainer.style.display = "grid";
-        isDlayedW = false 
-        isDlayed = true
-    }
+    
 
     const movieName = movieNameInput.value.trim();
 
@@ -179,10 +172,12 @@ function display(cont){
                 wishlistContainer.style.display = 'grid'
                 searchResultContainer.style.display = "none";
                 recommendationContainer.style.display = "none";
+                slideshowContainer.style.display='none';
             break;
 
             case "recom":
-                wishlistContainer.style.display = 'none'
+                slideshowContainer.style.display='none';
+                wishlistContainer.style.display = 'none';
                 searchResultContainer.style.display = "none";
                 recommendationContainer.style.display = "grid";
             
