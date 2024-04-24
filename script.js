@@ -31,7 +31,7 @@ function displaySlide() {
 async function searchMovie() {
     const movieName = movieNameInput.value.trim();
 
-    try {
+    try {                                                                            
         const response = await fetch('movies.json');
         const data = await response.json();
 
