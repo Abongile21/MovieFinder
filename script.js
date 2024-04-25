@@ -108,12 +108,20 @@ function calculateAverageRating(wishlist) {
 }
 
 function recommendMovies() {
-    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    const averageRating = calculateAverageRating(wishlist);
     display("recom")
-    const recommendedMovies = wishlist.filter(movie => String(parseFloat(movie.rating)).startsWith(String(averageRating)[0]));
+    setTimeout(async()=>{
+        const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        const response = await fetch('movies.json');
+        const data = await response.json();
+
+        const averageRating = calculateAverageRating(wishlist);
+        
+        const recommendedMovies = data.filter(movie => String(parseFloat(movie.rating)).startsWith(String(averageRating)[0]));
+        
+        displayRecommendations(recommendedMovies);
+
+    },3000)
     
-    displayRecommendations(recommendedMovies);
 }
 
 
@@ -121,8 +129,8 @@ function displayRecommendations(recommendedMovies) {
     if (recommendedMovies.length > 0) {
         const recommendationHTML = recommendedMovies.map(movie => `
             <div class="movieItem">
-                <img src="${movie.image}" alt="${movie.name}">
-                <h3>${movie.name}</h3>
+                <img src="${movie.image}" alt="${movie.movie}">
+                <h3>${movie.movie}</h3>
                 <p>⭐${movie.rating}</p>
                 <div class="buttons">
                     <button><a href="${movie.imdb_url}" target="_blank"><i class="fa-solid fa-play"></i></a></button>
